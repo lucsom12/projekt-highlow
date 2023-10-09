@@ -7,7 +7,8 @@ const CLIENT_ID = '41a89822d42c452fb778e429576a972b';
 const CLIENT_SECRET = '40a6ddb0f73d480094f24bd837e3dfba';
 
 function App() {
-  const [accesToken, setAccessToken] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [accessToken, setAccessToken] = useState('');
 
   useEffect(() => {
     var authParamers = {
@@ -22,9 +23,32 @@ function App() {
       .then(data => setAccessToken(data.access_token))
   }, []);
 
+  async function search() {
+    var artistParameters = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      }
+    }
+    var artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', artistParameters)
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
+
   return (
     <div className="App">
-      <p>New single from eyes closed: </p>
+      
+      <FormControl
+        placeholder='search for astirs'
+        type='input'
+        onKeyDown={event => {
+          if (event.key == "Enter") {
+            search()
+          }
+        }}
+        onChange={event => setSearchInput(event.target.value)}
+      />
     </div>
   );
 }
