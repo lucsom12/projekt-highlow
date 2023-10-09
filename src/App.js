@@ -33,12 +33,25 @@ function App() {
     }
     var artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', artistParameters)
       .then(response => response.json())
+      .then(data => {
+        return data.artists.items[0].id
+      });
+
+    var albums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?market=SE&limit=10&offset=0', artistParameters)
+      .then(response => response.json())
+      .then(data => console.log(data))
+
+    var topTracks = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/top-tracks' + '?market=SE', artistParameters)
+      .then(response => response.json())
       .then(data => console.log(data));
+
+
   }
+
 
   return (
     <div className="App">
-      
+
       <FormControl
         placeholder='search for astirs'
         type='input'
