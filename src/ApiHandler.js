@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FormControl } from "react-bootstrap";
+import TrackDisplay from "./TrackDisplay";
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
@@ -8,6 +9,7 @@ function ApiHandler() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [tracksFromArtist, setTracksFromArtist] = useState([]);
+  const [trackIndex, setTrackIndex] = useState(0)
   const artistParameters = {
     method: "GET",
     headers: {
@@ -103,14 +105,26 @@ function ApiHandler() {
         onChange={(event) => setSearchInput(event.target.value)}
       />
       {tracksFromArtist.length > 0 &&
-        < img src={tracksFromArtist[0].album.images[0].url} alt="">
-          {console.log(tracksFromArtist.length)}
 
-        </img>
+
+        < TrackDisplay track={tracksFromArtist[twoRandomInts(tracksFromArtist.length - 1)[0]]} />
       }
 
     </div >
   );
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function twoRandomInts(maxLength) {
+  const value1 = getRandomInt(maxLength)
+  let value2 = getRandomInt(maxLength)
+  while (value2 === value1) {
+    value2 = getRandomInt(maxLength)
+  }
+  return [value1, value2]
 }
 
 export default ApiHandler;
