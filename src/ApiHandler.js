@@ -106,9 +106,23 @@ function ApiHandler() {
         onChange={(event) => setSearchInput(event.target.value)}
       />
 
-
+      {tracksFromArtist.length > 0 &&
+      <GamePage tracks={tracksFromArtist}/>}
+      
     </div >
   );
+}
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function twoRandomInts(maxLength) {
+  const value1 = getRandomInt(maxLength)
+  let value2 = getRandomInt(maxLength)
+  while (value2 === value1) {
+      value2 = getRandomInt(maxLength)
+  }
+  return [value1, value2]
 }
 
 
