@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { FormControl } from "react-bootstrap";
+import React, { useEffect, useState, useCallback } from "react";
+import _ from "lodash";
+import SearchBar from './SearchBar'; // Import the SearchBar component
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
@@ -8,6 +9,8 @@ function ApiHandler() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [tracksFromArtist, setTracksFromArtist] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+
   const artistParameters = {
     method: "GET",
     headers: {
@@ -17,7 +20,7 @@ function ApiHandler() {
   };
 
   useEffect(() => {
-    var authParamers = {
+    var authParameters = {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -28,15 +31,46 @@ function ApiHandler() {
         "&client_secret=" +
         CLIENT_SECRET,
     };
-    fetch("https://accounts.spotify.com/api/token", authParamers)
+
+    fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((result) => result.json())
       .then((data) => setAccessToken(data.access_token));
   }, []);
-  async function searchArtist() {
+
+  const fetchSearchResults = useCallback(
+    _.debounce(async (query) => {
+      if (!query.trim()) {
+        setSearchResults([]);
+        return;
+      }
+
+      const response = await fetch(
+        `https://api.spotify.com/v1/search?q=${query}&type=artist`,
+        artistParameters
+      );
+      if (!response.ok) {
+        console.error("Error fetching search results:", response.statusText);
+        return;
+      }
+      const data = await response.json();
+      setSearchResults(data.artists.items || []);
+    }, 300),
+    [accessToken]
+  );
+
+  useEffect(() => {
+    if (searchInput) {
+      fetchSearchResults(searchInput);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchInput, fetchSearchResults]);
+
+  async function searchArtist(artistName = searchInput) {
     const trackSet = new Set();
     const trackAndPopularity = {};
     var artistID = await fetch(
-      "https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist",
+      `https://api.spotify.com/v1/search?q=${artistName}&type=artist`,
       artistParameters
     )
       .then((response) => response.json())
@@ -89,28 +123,21 @@ function ApiHandler() {
           trackAndPopularity[track.name] = track.popularity;
         });
       });
-  }
+  };
+
   return (
-    <div className="App">
-      <FormControl
-        placeholder="search for artist"
-        type="input"
-        onKeyDown={(event) => {
-          if (event.key === "Enter") {
-            searchArtist();
-          }
-        }}
-        onChange={(event) => setSearchInput(event.target.value)}
+
+    <div className="row d-flex">
+      <SearchBar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        searchResults={searchResults}
+        searchArtist={searchArtist}
+        setSearchResults={setSearchResults}
       />
-      {tracksFromArtist.length > 0 &&
-        < img src={tracksFromArtist[0].album.images[0].url} alt="">
-          {console.log(tracksFromArtist.length)}
-
-        </img>
-      }
-
-    </div >
+    </div>
   );
 }
 
 export default ApiHandler;
+
