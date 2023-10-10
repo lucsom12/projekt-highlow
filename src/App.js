@@ -22,7 +22,10 @@ function App() {
   }*/
 
   return (
-    <ApiHandler />
+    <div className="container">
+      <ApiHandler />
+    </div>
+    
   );
 
   /* function TrackImage(track) {

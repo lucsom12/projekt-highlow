@@ -90,7 +90,7 @@ function ApiHandler() {
       });
   }
   return (
-    <div className="App">
+   /* <div className="App">
       <FormControl
         placeholder="search for artist"
         type="input"
@@ -102,6 +102,10 @@ function ApiHandler() {
         onChange={(event) => setSearchInput(event.target.value)}
       />
 
+    </div>*/
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"></input>
     </div>
   );
 }
