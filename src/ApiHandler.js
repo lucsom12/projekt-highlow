@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import _ from "lodash";
+import SearchBar from './SearchBar'; // Import the SearchBar component
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
@@ -9,6 +10,7 @@ function ApiHandler() {
   const [accessToken, setAccessToken] = useState("");
   const [tracksFromArtist, setTracksFromArtist] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+
   const artistParameters = {
     method: "GET",
     headers: {
@@ -18,7 +20,7 @@ function ApiHandler() {
   };
 
   useEffect(() => {
-    var authParamers = {
+    var authParameters = {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -29,7 +31,8 @@ function ApiHandler() {
         "&client_secret=" +
         CLIENT_SECRET,
     };
-    fetch("https://accounts.spotify.com/api/token", authParamers)
+
+    fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((result) => result.json())
       .then((data) => setAccessToken(data.access_token));
   }, []);
@@ -40,7 +43,7 @@ function ApiHandler() {
         setSearchResults([]);
         return;
       }
-  
+
       const response = await fetch(
         `https://api.spotify.com/v1/search?q=${query}&type=artist`,
         artistParameters
@@ -54,7 +57,6 @@ function ApiHandler() {
     }, 300),
     [accessToken]
   );
-  
 
   useEffect(() => {
     if (searchInput) {
@@ -63,6 +65,7 @@ function ApiHandler() {
       setSearchResults([]);
     }
   }, [searchInput, fetchSearchResults]);
+
   async function searchArtist(artistName = searchInput) {
     const trackSet = new Set();
     const trackAndPopularity = {};
@@ -119,46 +122,20 @@ function ApiHandler() {
         });
         console.log(trackAndPopularity);
       });
-  }
+  };
+
   return (
     <div className="row d-flex">
-      <input
-        className="form-control"
-        type="input"
-        id="exampleFormControlInput1"
-        value={searchInput}
-        placeholder="Search for an Artist!"
-        onChange={(e) => setSearchInput(e.target.value)}
-      ></input>
-      <button type="submit" className="btn btn-primary" onClick={searchArtist}>
-        Search
-      </button>
-
-      <ul className="list-group">
-        {searchResults.slice(0, 7).map((result) => (
-          <li
-            className="list-group-item list-group-item-action"
-            key={result.id}
-            onClick={() => {
-              searchArtist(result.name);
-              setSearchResults([]);
-            }}
-          >
-            {result.images && (
-              <img
-                className=""
-                src={result.images[0].url}
-                alt={result.name}
-                width="50"
-                height="50"
-              />
-            )}
-            {result.name}
-          </li>
-        ))}
-      </ul>
+      <SearchBar 
+        searchInput={searchInput} 
+        setSearchInput={setSearchInput} 
+        searchResults={searchResults} 
+        searchArtist={searchArtist} 
+        setSearchResults={setSearchResults}
+      />
     </div>
   );
 }
 
 export default ApiHandler;
+
