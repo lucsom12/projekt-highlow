@@ -105,11 +105,11 @@ function ApiHandler() {
         onChange={(event) => setSearchInput(event.target.value)}
       />
       {tracksFromArtist.length > 0 &&
-
-
-        < TrackDisplay track={tracksFromArtist[twoRandomInts(tracksFromArtist.length - 1)[0]]} />
+        < TrackDisplay track={tracksFromArtist[twoRandomInts(tracksFromArtist.length)[0]]} />
       }
-
+      {tracksFromArtist.length > 0 &&
+        < TrackDisplay track={tracksFromArtist[twoRandomInts(tracksFromArtist.length)[1]]} />
+      }
     </div >
   );
 }
