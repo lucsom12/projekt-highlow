@@ -36,3 +36,114 @@
     transform: rotate(360deg);
   }
 }
+
+/* landing page styling */
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700,900,400italic,700italic,900italic);
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fdf9fd;
+  color: #011a32;
+  font: 16px/1.25 "Raleway", sans-serif;
+  text-align: center;
+}
+
+#higher {
+  animation: text-shadow-up 2s ease-in-out;
+  animation-delay: 0.7s;
+  color: #00ff2f;
+  font-size: 5em;
+  font-weight: 900;
+  line-height: 1;
+}
+#lower {
+  animation: text-shadow-down 2s ease-in-out;
+  animation-delay: 1.2s;
+  color: #ff8700;
+  font-size: 5em;
+  font-weight: 900;
+  line-height: 1;
+}
+
+#spotify {
+  color: #574080;
+  font-size: 1.4em;
+  font-weight: 200;
+  letter-spacing: 0.3rem;
+  position: absolute;
+  bottom: -20px;
+  left: 330px;
+}
+
+@keyframes text-shadow-up {
+  0% {
+    transform: translateY(0);
+    text-shadow: 0 0 0 #00ffdc, 0 0 0 #00ff85, 0 0 0 #9cff00, 0 0 0 #31ff00;
+  }
+
+  20% {
+    transform: translateY(-1em);
+    text-shadow: 0 0.125em 0 #00ffdc, 0 0.25em 0 #00ff85, 0 -0.125em 0 #9cff00,
+      0 -0.25em 0 #31ff00;
+  }
+
+  40% {
+    transform: translateY(0.1em);
+    text-shadow: 0 -0.0625em 0 #00ffdc, 0 -0.125em 0 #00ff85,
+      0 0.0625em 0 #9cff00, 0 0.125em 0 #31ff00;
+  }
+
+  60% {
+    transform: translateY(-0.3em);
+    text-shadow: 0 0.03125em 0 #00ffdc, 0 0.0625em 0 #00ff85,
+      0 -0.03125em 0 #9cff00, 0 -0.0625em 0 #31ff00;
+  }
+
+  80% {
+    transform: translateY(0);
+    text-shadow: 0 0 0 #00ffdc, 0 0 0 #00ff85, 0 0 0 #9cff00, 0 0 0 #31ff00;
+  }
+}
+
+@keyframes text-shadow-down {
+  0% {
+    transform: translateY(0);
+    text-shadow: 0 0 0 #ff2f00, 0 0 0 #ffab00, 0 0 0 #ff5b00, 0 0 0 #ffca00;
+  }
+
+  20% {
+    transform: translateY(1em);
+    text-shadow: 0 0.125em 0 #ff2f00, 0 0.25em 0 #ffab00, 0 -0.125em 0 #ff5b00,
+      0 -0.25em 0 #ffca00;
+  }
+
+  40% {
+    transform: translateY(-0.1em);
+    text-shadow: 0 -0.0625em 0 #ff2f00, 0 -0.125em 0 #ffab00,
+      0 0.0625em 0 #ff5b00, 0 0.125em 0 #ffca00;
+  }
+
+  60% {
+    transform: translateY(0.3em);
+    text-shadow: 0 0.03125em 0 #ff2f00, 0 0.0625em 0 #ffab00,
+      0 -0.03125em 0 #ff5b00, 0 -0.0625em 0 #ffca00;
+  }
+
+  80% {
+    transform: translateY(0);
+    text-shadow: 0 0 0 #ff2f00, 0 0 0 #ffab00, 0 0 0 #ff5b00, 0 0 0 #ffca00;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
