@@ -1,3 +1,6 @@
+import { FormControl } from "react-bootstrap";
+import TrackDisplay from "./TrackDisplay";
+import GamePage from "./GamePage";
 import React, { useEffect, useState, useCallback } from "react";
 import _ from "lodash";
 import SearchBar from './SearchBar'; // Import the SearchBar component
@@ -9,6 +12,7 @@ function ApiHandler() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [tracksFromArtist, setTracksFromArtist] = useState([]);
+  const [trackIndex, setTrackIndex] = useState(0)
   const [searchResults, setSearchResults] = useState([]);
 
   const artistParameters = {
@@ -89,8 +93,6 @@ function ApiHandler() {
         return data.items;
       });
 
-
-
     const fetchTrackPromises = albums.map(async (album) => {
       const response = await fetch(
         "https://api.spotify.com/v1/albums/" + album.id + "/tracks?limit=5",
@@ -126,18 +128,30 @@ function ApiHandler() {
   };
 
   return (
+    <div className="App">
 
-    <div className="row d-flex">
-      <SearchBar
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        searchResults={searchResults}
-        searchArtist={searchArtist}
-        setSearchResults={setSearchResults}
-      />
-    </div>
+      <div className="row d-flex">
+        <SearchBar
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          searchResults={searchResults}
+          searchArtist={searchArtist}
+          setSearchResults={setSearchResults}
+        />
+        {
+          tracksFromArtist.length > 0 &&
+          <GamePage tracks={tracksFromArtist} />
+        }
+      </div>
+
+    </div >
+
   );
 }
+
+
+
+
 
 export default ApiHandler;
 
