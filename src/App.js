@@ -50,8 +50,8 @@ function App() {
 
     var albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/albums?market=SE&limit=5&offset=0",
+      artistID +
+      "/albums?market=SE&limit=5&offset=0",
       artistParameters
     )
       .then((response) => response.json())
@@ -90,19 +90,19 @@ function App() {
         trackArray.forEach((track) => {
           trackAndPopularity[track.name] = track.popularity;
         });
-        //console.log(trackAndPopularity);
+        console.log(trackAndPopularity);
       });
   }
-  /* if (tracksFromArtist.length > 8) {
-    console.log(tracksFromArtist[0].album.images[0].url);
-  } */
+  if (tracksFromArtist.length > 8) {
+    console.log(tracksFromArtist);
+  }
 
   async function fetchTopTracks(artistID) {
     var topTracks = await fetch(
       "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/top-tracks" +
-        "?market=SE",
+      artistID +
+      "/top-tracks" +
+      "?market=SE",
       artistParameters
     )
       .then((response) => response.json())
@@ -121,20 +121,20 @@ function App() {
         }}
         onChange={(event) => setSearchInput(event.target.value)}
       />
-      <TrackImage track={tracksFromArtist[0]} />
+
     </div>
   );
 
-  function TrackImage(track) {
-    if (tracksFromArtist.length > 8) {
-      const image = track.album.images[0].url;
-      return (
-        <div className="row col-sm-4 mb-4">
-          <img src={image} />
-        </div>
-      );
-    }
-  }
+  /* function TrackImage(track) {
+     if (tracksFromArtist.length > 8) {
+       const image = track.album.images[0].url;
+       return (
+         <div className="row col-sm-4 mb-4">
+           <img src={image} />
+         </div>
+       );
+     }
+   } */
 }
 
 export default App;
