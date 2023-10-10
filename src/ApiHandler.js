@@ -55,6 +55,8 @@ function ApiHandler() {
         return data.items;
       });
 
+
+
     const fetchTrackPromises = albums.map(async (album) => {
       const response = await fetch(
         "https://api.spotify.com/v1/albums/" + album.id + "/tracks?limit=5",
@@ -86,7 +88,6 @@ function ApiHandler() {
         trackArray.forEach((track) => {
           trackAndPopularity[track.name] = track.popularity;
         });
-        console.log(trackAndPopularity);
       });
   }
   return (
@@ -95,14 +96,20 @@ function ApiHandler() {
         placeholder="search for artist"
         type="input"
         onKeyDown={(event) => {
-          if (event.key == "Enter") {
+          if (event.key === "Enter") {
             searchArtist();
           }
         }}
         onChange={(event) => setSearchInput(event.target.value)}
       />
+      {tracksFromArtist.length > 0 &&
+        < img src={tracksFromArtist[0].album.images[0].url} alt="">
+          {console.log(tracksFromArtist.length)}
 
-    </div>
+        </img>
+      }
+
+    </div >
   );
 }
 
