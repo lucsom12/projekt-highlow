@@ -1,6 +1,7 @@
 import { createBrowserRouter, json } from "react-router-dom";
 import App from './App';
 import ScoreCounter from "./scoreCounter";
+import ApiHandler from "./ApiHandler";
 
 async function LeaderBoardLoader() {
   let score;
@@ -32,9 +33,9 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "",
+        path: "/search",
         element: (
-          <p>Hello Router!</p>
+          <ApiHandler />
         ),
       },
       {
