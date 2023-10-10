@@ -1,10 +1,12 @@
 import { createBrowserRouter, json } from "react-router-dom";
 import App from './App';
 import ScoreCounter from "./scoreCounter";
+import { useState } from "react";
 
 async function LeaderBoardLoader() {
-  let score;
-  return score = 1
+  const [currentScore, setScore] = useState("0");
+
+  return currentScore
   // try {
   //   const response = await fetch('/api/game-data'); // Replace with your actual API endpoint
   //   if (!response.ok) {
