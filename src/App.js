@@ -9,6 +9,7 @@ const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
 function App() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
+  const [tracksFromArtist, setTracksFromArtist] = useState([]);
 
   const artistParameters = {
     method: "GET",
@@ -85,12 +86,16 @@ function App() {
         return Promise.all(trackpromises);
       })
       .then((trackArray) => {
+        setTracksFromArtist(trackArray);
         trackArray.forEach((track) => {
           trackAndPopularity[track.name] = track.popularity;
         });
-        console.log(trackAndPopularity);
+        //console.log(trackAndPopularity);
       });
   }
+  /* if (tracksFromArtist.length > 8) {
+    console.log(tracksFromArtist[0].album.images[0].url);
+  } */
 
   async function fetchTopTracks(artistID) {
     var topTracks = await fetch(
@@ -116,8 +121,20 @@ function App() {
         }}
         onChange={(event) => setSearchInput(event.target.value)}
       />
+      <TrackImage track={tracksFromArtist[0]} />
     </div>
   );
+
+  function TrackImage(track) {
+    if (tracksFromArtist.length > 8) {
+      const image = track.album.images[0].url;
+      return (
+        <div className="row col-sm-4 mb-4">
+          <img src={image} />
+        </div>
+      );
+    }
+  }
 }
 
 export default App;
