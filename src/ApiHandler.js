@@ -58,8 +58,6 @@ function ApiHandler() {
         return data.items;
       });
 
-
-
     const fetchTrackPromises = albums.map(async (album) => {
       const response = await fetch(
         "https://api.spotify.com/v1/albums/" + album.id + "/tracks?limit=5",
@@ -101,6 +99,7 @@ function ApiHandler() {
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             searchArtist();
+            //setSearchInput(event.target.value)
           }
         }}
         onChange={(event) => setSearchInput(event.target.value)}
