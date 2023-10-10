@@ -1,15 +1,17 @@
 
 
-function TrackDisplay({ track }) {
+function TrackDisplay({ track, length }) {
 
+    if (length > 0) {
+        return (
+            <div>
+                < img src={track.album.images[0].url} alt="" />
+                <p>{track.name}</p>
+            </div>
 
-    return (
-        <div>
-            < img src={track.album.images[0].url} alt="" />
-            <p>{track.name}</p>
-        </div>
+        )
+    }
 
-    )
 }
 
 
