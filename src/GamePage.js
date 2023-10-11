@@ -1,16 +1,13 @@
 import TrackDisplay from "./TrackDisplay";
 import React, { useEffect, useState } from "react";
+import { addDoc, collection, getFirestore } from "@firebase/firestore";
+import FirebaseDev from "./components/FirebaseDev";
 
 function GamePage({ tracks }) {
     const [score, setScore] = useState(0);
     const [hiScore, setHiScore] = useState(0);
 
     function updateScore() {
-        // setScore((object) => {
-        //     const clone = object
-        //     return clone + 1
-        //  })
-        //setScore(score + 1)
         setScore(score + 1)
         setHiScore(Math.max(hiScore, score + 1))
     }
@@ -27,6 +24,13 @@ function GamePage({ tracks }) {
         }
         return [value1, value2]
     }
+    async function postScore() {
+        const db = getFirestore();
+        const scoresCollection = collection(db, "LeaderBoard2");
+        await addDoc(scoresCollection, { score: score });
+
+
+    }
 
     const [randInts, setRandInts] = useState(twoRandomInts(tracks.length));
 
@@ -37,6 +41,7 @@ function GamePage({ tracks }) {
                 <p>Score: {score}</p>
                 <TrackDisplay track={tracks[randInts[0]]} length={tracks.length} scoreFunction={updateScore} />
                 <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} scoreFunction={updateScore} />
+                <button onClick={postScore}>Post to firebase</button>
             </div>
         </div>
     )

@@ -2,21 +2,16 @@ import { useEffect, useState } from "react";
 
 
 function LeaderBoard() {
-
     const [players, setPlayers] = useState([])
-
     let mockPlayers = [
         { name: 'adam', score: 200 },
         { name: 'leo', score: 100 },
         { name: 'luc', score: 300 },
         { name: 'joar', score: 33 }
     ];
-
     useEffect(() => {
         setPlayers(mockPlayers.sort(compare))
     }, [])
-
-
 
     return (
         <div>

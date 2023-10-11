@@ -3,15 +3,8 @@ import App from './App';
 import ApiHandler from "./ApiHandler";
 import LandingPage from "./LandingPage";
 import ScoreCounter from "./scoreCounter";
-import HomePage from "./components/HomePage";
 import LeaderBoard from "./LeaderBoard";
-
-async function LeaderBoardLoader() {
-  let score;
-  return score = 1
-
-}
-
+import FirebaseDev from "./components/FirebaseDev";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/devF",
-        element: <HomePage />
+        element: <FirebaseDev />
       },
       {
         path: "/leader-board",
