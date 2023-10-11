@@ -30,8 +30,9 @@ function DevNavBar() {
         <NavLink className="nav-link" to="/search">
           game
         </NavLink>
-      </li>
-    </ul>
+      </li >
+
+    </ul >
   )
 }
 

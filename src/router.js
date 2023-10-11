@@ -5,8 +5,11 @@ import LandingPage from "./LandingPage";
 import ScoreCounter from "./scoreCounter";
 
 async function LeaderBoardLoader() {
-  let score;
-  return score = 1
+  const [currentScore, setScore] = useState("0");
+  let score = 1;
+
+
+  return currentScore
   // try {
   //   const response = await fetch('/api/game-data'); // Replace with your actual API endpoint
   //   if (!response.ok) {
