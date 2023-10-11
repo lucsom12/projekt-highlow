@@ -10,15 +10,16 @@ import { useState } from "react";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useEffect } from "react";
 import { push } from "@firebase/database";
-
+import firebaseConfig from "./firebase-config"
 
 
 
 
 export default function HomePage() {
+  firebase.initializeApp(firebaseConfig);
 
   const db = getFirestore(); // Replace with your Firestore initialization code
-  const usersCollection = collection(db, 'LeaderBoard'); // Specify the name of your collection
+  const usersCollection = collection(db, 'LeaderBoard2'); // Specify the name of your collection
 
   const [playerName, setPlayerName] = useState('Joar')
 
@@ -40,6 +41,10 @@ export default function HomePage() {
         score: score,
       });
       console.log('Document written with ID: ', docRef.id);
+      fetchData().then((userData) => {
+        setData(userData);
+      });
+
     } catch (error) {
       console.error('Error adding document: ', error);
     }
@@ -70,15 +75,17 @@ export default function HomePage() {
   return (
     <div>
 
-      <h1>SpotyHigher</h1>
-      {/* <LeaderBoardkladd /> */}
-      <button addClick={pushInformation("Joar", "6", "2")}> Push</button>
+      <h1>SpotyHigher Firebase mock</h1>
+      <button onClick={() => pushInformation("Joar", "6", "2")}> Push</button>
       <h1>My Data</h1>
       <ul>
         {dat.map((item, index) => (
-          <li key={index}>{item.fieldName}</li>
+          <li key={index}>
+            Player Name: {item.playerName}, Age: {item.age}, Score: {item.score}
+          </li>
         ))}
       </ul>
+
     </div>
   )
 }
