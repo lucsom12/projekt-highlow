@@ -12,8 +12,8 @@ const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
 export default function App() {
   return (
     <div className="container">
-      <LandingPage />
+      <Outlet />
     </div>
-    );
+  );
 }
 

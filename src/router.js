@@ -1,5 +1,7 @@
 import { createBrowserRouter, json } from "react-router-dom";
 import App from './App';
+import ApiHandler from "./ApiHandler";
+import LandingPage from "./LandingPage";
 
 
 
@@ -10,10 +12,12 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "",
-        element: (
-          <p>Hello Router!</p>
-        ),
+        path: "/search",
+        element: <ApiHandler />,
+      },
+      {
+        path: "/home",
+        element: <LandingPage />
       }
 
     ]
