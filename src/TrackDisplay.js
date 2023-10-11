@@ -1,7 +1,11 @@
-function TrackDisplay(props /*{ track, length }*/) {
+import React, { useState } from "react";
+function TrackDisplay(props) {
+    const [showPopularity, setShowPopularity] = useState(false);
+
     function handleClick() {
         console.log("rumpa!")
         // alert('hello')
+        setShowPopularity(true)
         props.scoreFunction()
     }
 
@@ -10,6 +14,9 @@ function TrackDisplay(props /*{ track, length }*/) {
             <button type="button" onClick={() => handleClick()} className="btn btn-primary col-4">
                 < img src={props.track.album.images[0].url} style={{outline: "thick solid white", boxShadow: "16px 16px #191414"}}alt="" width="256" height="256"/>
                 <p>{props.track.name}</p>
+                {showPopularity && (
+                    <p>{props.track.popularity}</p>
+                )}
             </button>
         )
     }
