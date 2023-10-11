@@ -1,7 +1,6 @@
 import TrackDisplay from "./TrackDisplay";
 import React, { useEffect, useState } from "react";
 import { addDoc, collection, getFirestore } from "@firebase/firestore";
-import FirebaseDev from "./components/FirebaseDev";
 
 function GamePage({ tracks }) {
     const [score, setScore] = useState(0);
@@ -28,8 +27,6 @@ function GamePage({ tracks }) {
         const db = getFirestore();
         const scoresCollection = collection(db, "LeaderBoard2");
         await addDoc(scoresCollection, { score: score });
-
-
     }
 
     const [randInts, setRandInts] = useState(twoRandomInts(tracks.length));
