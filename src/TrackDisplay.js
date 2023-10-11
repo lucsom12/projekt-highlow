@@ -1,14 +1,15 @@
-function TrackDisplay({ track, length }) {
+function TrackDisplay(props /*{ track, length }*/) {
     function handleClick() {
         console.log("rumpa!")
         // alert('hello')
+        props.scoreFunction()
     }
 
-    if (length > 0) {
+    if (props.length > 0) {
         return (
             <button type="button" onClick={() => handleClick()} className="btn btn-primary col-4">
-                < img src={track.album.images[0].url} style={{outline: "thick solid white", boxShadow: "16px 16px #191414"}}alt="" width="256" height="256"/>
-                <p>{track.name}</p>
+                < img src={props.track.album.images[0].url} style={{outline: "thick solid white", boxShadow: "16px 16px #191414"}}alt="" width="256" height="256"/>
+                <p>{props.track.name}</p>
             </button>
         )
     }

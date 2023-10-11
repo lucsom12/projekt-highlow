@@ -5,9 +5,14 @@ function GamePage({ tracks }) {
     const [score, setScore] = useState(0);
     const [hiScore, setHiScore] = useState(0);
 
-    function updateScore(newScore) {
-        setScore(newScore)
-        setHiScore(Math.max(hiScore, score))
+    function updateScore() {
+        // setScore((object) => {
+        //     const clone = object
+        //     return clone + 1
+        //  })
+        //setScore(score + 1)
+        setScore(score + 1)
+        setHiScore(Math.max(hiScore, score + 1))
     }
 
     function getRandomInt(max) {
@@ -30,8 +35,8 @@ function GamePage({ tracks }) {
             <div className="row d-flex justify-content-center align-items-center">
                 <p>Highest Score: {hiScore}</p>
                 <p>Score: {score}</p>
-                < TrackDisplay track={tracks[randInts[0]]} length={tracks.length} />
-                <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} />
+                <TrackDisplay track={tracks[randInts[0]]} length={tracks.length} scoreFunction={updateScore}/>
+                <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} scoreFunction={updateScore} />
             </div>
         </div>
     )
