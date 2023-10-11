@@ -1,4 +1,3 @@
-import LeaderBoardkladd from "./LeaderBoardkladd";
 import { collection, addDoc, getFirestore, query, where, getDocs } from "firebase/firestore";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

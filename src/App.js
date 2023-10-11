@@ -15,7 +15,6 @@ export default function App() {
     <div className="container">
       <DevNavBar />
       <Outlet />
-      <HomePage />
     </div>
   );
 }
@@ -31,6 +30,11 @@ function DevNavBar() {
       <li className="nav-item">
         <NavLink className="nav-link" to="/search">
           game
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/devF">
+          devFirebase
         </NavLink>
       </li>
     </ul>
