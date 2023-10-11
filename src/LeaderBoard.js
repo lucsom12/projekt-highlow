@@ -14,17 +14,19 @@ function LeaderBoard() {
     }, [])
 
     return (
-        <div>
-            {players.map(player => (
-                <Entry key={player.name} name={player.name} score={player.score} />
-            ))}
+        <div className="container-md">
+            <ul className="list-group list-group-numbered">
+                {players.map((player, index) => (
+                    <Entry key={player.name} name={player.name} score={player.score} />
+                ))}
+            </ul>
         </div>
     )
 
 }
 
-function Entry({ name, score }) {
-    return <li>{name}: {score} </li>
+function Entry({ name, score, index }) {
+    return <li className="list-group-item"> {name}: {score} </li>
 }
 
 function compare(a, b) {
