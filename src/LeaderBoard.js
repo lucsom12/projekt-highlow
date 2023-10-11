@@ -17,7 +17,10 @@ function LeaderBoard() {
         async function fetchData() {
             try {
                 const querySnapshot = await getDocs(scoresCollection);
-                const data = querySnapshot.docs.map((doc) => doc.data());
+                const data = querySnapshot.docs.map((doc) => {
+                    const { playerName, score } = doc.data();
+                    return { playerName, score };
+                });
                 // Sort the data by score in descending order
                 data.sort((a, b) => b.score - a.score);
                 setPlayers(data);
@@ -37,7 +40,7 @@ function LeaderBoard() {
             <h1>LeaderBoard</h1>
             <ul className="list-group list-group-numbered">
                 {players.map((player, index) => (
-                    <Entry key={player.name} name={player.name} score={player.score} />
+                    <Entry key={player.name} name={player.playerName} score={player.score} />
                 ))}
             </ul>
         </div>
