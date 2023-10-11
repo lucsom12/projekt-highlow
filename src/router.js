@@ -3,13 +3,14 @@ import App from './App';
 import ApiHandler from "./ApiHandler";
 import LandingPage from "./LandingPage";
 import ScoreCounter from "./scoreCounter";
+import { useState } from "react";
 
 async function LeaderBoardLoader() {
   const [currentScore, setScore] = useState("0");
-  let score = 1;
+  let score = currentScore;
 
 
-  return currentScore
+  return score
   // try {
   //   const response = await fetch('/api/game-data'); // Replace with your actual API endpoint
   //   if (!response.ok) {
