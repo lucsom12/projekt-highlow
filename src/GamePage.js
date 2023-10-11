@@ -19,9 +19,11 @@ function GamePage({ tracks }) {
     const [randInts, setRandInts] = useState(twoRandomInts(tracks.length));
 
     return (
-        <div>
-            < TrackDisplay track={tracks[randInts[0]]} length={tracks.length} />
-            < TrackDisplay track={tracks[randInts[1]]} length={tracks.length} />
+        <div className='container'>
+            <div className="row d-flex justify-content-center align-items-center">
+                    < TrackDisplay track={tracks[randInts[0]]} length={tracks.length} />
+                    <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} />
+            </div>
         </div>
     )
 }
