@@ -1,9 +1,10 @@
 import TrackDisplay from "./TrackDisplay";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function GamePage({ tracks }) {
     const [score, setScore] = useState(0);
     const [hiScore, setHiScore] = useState(0);
+    const [showTrackPopularity, setShowTrackPopularity] = useState(false);
 
     function updateScore() {
         // setScore((object) => {
@@ -13,6 +14,7 @@ function GamePage({ tracks }) {
         //setScore(score + 1)
         setScore(score + 1)
         setHiScore(Math.max(hiScore, score + 1))
+        setShowTrackPopularity(true)
     }
 
     function getRandomInt(max) {
@@ -35,8 +37,8 @@ function GamePage({ tracks }) {
             <div className="row d-flex justify-content-center align-items-center">
                 <p>Highest Score: {hiScore}</p>
                 <p>Score: {score}</p>
-                <TrackDisplay track={tracks[randInts[0]]} length={tracks.length} scoreFunction={updateScore}/>
-                <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} scoreFunction={updateScore} />
+                <TrackDisplay track={tracks[randInts[0]]} length={tracks.length} scoreFunction={updateScore} showPopularity={showTrackPopularity}/>
+                <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} scoreFunction={updateScore} showPopularity={showTrackPopularity}/>
             </div>
         </div>
     )
