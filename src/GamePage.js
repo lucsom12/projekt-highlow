@@ -2,12 +2,11 @@ import TrackDisplay from "./TrackDisplay";
 import React, { useEffect, useState } from "react";
 
 function GamePage({ tracks }) {
-    
-    console.log(tracks)
+
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
     }
-    
+
     function twoRandomInts(maxLength) {
         const value1 = getRandomInt(maxLength)
         let value2 = getRandomInt(maxLength)
@@ -18,7 +17,7 @@ function GamePage({ tracks }) {
     }
 
     const [randInts, setRandInts] = useState(twoRandomInts(tracks.length));
-    
+
     return (
         <div>
             < TrackDisplay track={tracks[randInts[0]]} length={tracks.length} />
