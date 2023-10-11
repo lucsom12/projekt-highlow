@@ -1,5 +1,7 @@
 import { createBrowserRouter, json } from "react-router-dom";
 import App from './App';
+import ApiHandler from "./ApiHandler";
+import LandingPage from "./LandingPage";
 import ScoreCounter from "./scoreCounter";
 
 async function LeaderBoardLoader() {
@@ -32,25 +34,15 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "",
-        element: (
-          <p>Hello Router!</p>
-        ),
+        path: "/search",
+        element: <ApiHandler />,
       },
       {
-        path: "/game",
-        loader: LeaderBoardLoader,
-        Component: ScoreCounter,
-        element: (
-          <ScoreCounter />
-        ),
-      },
-      {
-        path: "*",
-        element: (
-          <p>Error 404, sidan: "{window.location.href}" finnes ej!</p>
-        ),
-      },]
+        path: "/home",
+        element: <LandingPage />
+      }
+
+    ]
   },
 ]);
 
