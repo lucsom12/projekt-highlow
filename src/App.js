@@ -31,6 +31,11 @@ function DevNavBar() {
           game
         </NavLink>
       </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/leader-board">
+          LeaderBoard
+        </NavLink>
+      </li>
     </ul>
   )
 }

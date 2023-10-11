@@ -3,6 +3,7 @@ import App from './App';
 import ApiHandler from "./ApiHandler";
 import LandingPage from "./LandingPage";
 import ScoreCounter from "./scoreCounter";
+import LeaderBoard from "./LeaderBoard";
 
 async function LeaderBoardLoader() {
   let score;
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <LandingPage />
+      },
+      {
+        path: "/leader-board",
+        element: <LeaderBoard />
       }
 
     ]
