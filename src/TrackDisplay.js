@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 
 function TrackDisplay(props) {
     function handleClick() {
-        console.log("rumpa!")
         // alert('hello')
-        props.scoreFunction()
+        props.scoreFunction(props.track.id)
     }
 
     if (props.length > 0 || props.showPopularity === true) {

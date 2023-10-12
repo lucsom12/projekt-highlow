@@ -9,17 +9,41 @@ function GamePage({ tracks }) {
     const [showTrackPopularity, setShowTrackPopularity] = useState(false);
     const [randTracks, setRandTracks] = useState(twoRandomTracks(trackList));
 
-    function updateScore() {
+    function evaluateChoice(trackId) {
+        console.log("hello")
+        for (let i = 0; i < randTracks.length; i++) {
+            const other = Math.abs(i-1)
 
+            console.log(trackId + " " + randTracks[i].id)
+
+            if (randTracks[i].id === trackId) {
+                if (randTracks[i].popularity >= randTracks[other].popularity) {
+                    updateScore(trackId)
+                }
+                else {
+                    gameOver()
+                }
+            }
+        }
+    }
+
+    function updateScore(trackId) {
+        console.log('success')
         // setScore((object) => {
         //     const clone = object
         //     return clone + 1
         //  })
-        //setScore(score + 1)
-        setScore(score + 1)
-        setHiScore(Math.max(hiScore, score + 1))
-        setShowTrackPopularity(true)
+        const newScore = score + 1;
+        setScore(newScore)
+        setHiScore(Math.max(hiScore, newScore))
+        //setShowTrackPopularity(true)
+        //paus
+        //setShowTrackPopularity(false)
         updateTrackList()
+    }
+
+    function gameOver(trackId) {
+        console.log('game over')
     }
 
     function updateTrackList() {
@@ -61,8 +85,8 @@ function GamePage({ tracks }) {
             <div className="row d-flex justify-content-center align-items-center">
                 <p>Highest Score: {hiScore}</p>
                 <p>Score: {score}</p>
-                <TrackDisplay track={randTracks[0]} length={trackList.length} scoreFunction={updateScore} showPopularity={showTrackPopularity}/>
-                <TrackDisplay track={randTracks[1]} length={trackList.length} scoreFunction={updateScore} showPopularity={showTrackPopularity}/>
+                <TrackDisplay track={randTracks[0]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity}/>
+                <TrackDisplay track={randTracks[1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity}/>
             </div>
         </div>
     )
