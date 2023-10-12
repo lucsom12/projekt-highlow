@@ -78,26 +78,58 @@ function GamePage({ tracks }) {
         for (let i = remove.length - 1; i >= 0; i--) trackList.splice(remove[i], 1);
 
         console.log("post: " + trackList.length)
-
         
         if (trackList.length <= 2) {
-            endGame()
             alert('congrats you got max score!')
             console.log('done')
+            endGame()
+            return
         }
 
-        setRandTracks(twoRandomTracks(trackList))
+        const rand = getRandomTracks(trackList, 2)
+        console.log(rand)
+        setRandTracks(rand)
     }
 
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
     }
 
-    function twoRandomInts(maxLength) {
-        const value1 = getRandomInt(maxLength)
-        let value2 = getRandomInt(maxLength)
+    function randomIntArray(length, maxValue) {
+        let list = []
+        for (let i = 0; i < length; i++) {
+            let val = getRandomInt(maxValue)
+            if (i > 0) {
+                while (val === list[i-1]) val = getRandomInt(maxValue)
+            }
+
+            console.log("val: " + val)
+            list.push(val)
+        }
+
+        console.log("test: " + list)
+        return list
+    }
+
+    function getRandomTracks(trackList, amount) {
+        // const randArray = randomIntArray(amount, trackList.length-1)
+        let pickedTracks = []
+        // for (let i; i < randArray.length; i++) {
+        //     pickedTracks.push(trackList[randArray[i]]) 
+        // }
+
+        randomIntArray(amount, trackList.length-1).forEach((index) => {
+            pickedTracks.push(trackList[index])
+        })
+
+        return pickedTracks
+    }
+
+    function twoRandomInts(maxValue) {
+        const value1 = getRandomInt(maxValue)
+        let value2 = getRandomInt(maxValue)
         while (value2 === value1) {
-            value2 = getRandomInt(maxLength)
+            value2 = getRandomInt(maxValue)
         }
         return [value1, value2]
     }
@@ -106,7 +138,6 @@ function GamePage({ tracks }) {
         const randIDs = twoRandomInts(tracks.length)
         return [tracks[randIDs[0]], tracks[randIDs[1]]]
     }
-
 
     return (
         <div className='container'>
@@ -119,6 +150,5 @@ function GamePage({ tracks }) {
         </div>
     )
 }
-
 
 export default GamePage
