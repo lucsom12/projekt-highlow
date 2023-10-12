@@ -34,9 +34,11 @@ function GamePage({ tracks }) {
         <div className='container'>
             <div className="row d-flex justify-content-center align-items-center">
                 <p>Highest Score: {hiScore}</p>
-                <p>Score: {score}</p>
-                <TrackDisplay track={tracks[randInts[0]]} length={tracks.length} scoreFunction={updateScore} />
-                <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} scoreFunction={updateScore} />
+                <p>Score: {score}</p>   
+                <div className="col-12">
+                    <TrackDisplay track={tracks[randInts[0]]} length={tracks.length} scoreFunction={updateScore} />
+                    <TrackDisplay track={tracks[randInts[1]]} length={tracks.length} scoreFunction={updateScore} />
+                </div>
             </div>
         </div>
     )

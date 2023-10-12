@@ -2,8 +2,9 @@ import { FormControl } from "react-bootstrap";
 import TrackDisplay from "./TrackDisplay";
 import GamePage from "./GamePage";
 import React, { useEffect, useState, useCallback } from "react";
+import { useOutletContext } from "react-router-dom";
 import _ from "lodash";
-import SearchBar from './SearchBar'; // Import the SearchBar component
+import SearchBar from "./SearchBar"; // Import the SearchBar component
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
@@ -12,8 +13,11 @@ function ApiHandler() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [tracksFromArtist, setTracksFromArtist] = useState([]);
-  const [trackIndex, setTrackIndex] = useState(0)
+  const [trackIndex, setTrackIndex] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
+  const [artistDisplay, setArtistDisplay] = useState("");
+
+  const { setGameStarted } = useOutletContext();
 
   const artistParameters = {
     method: "GET",
@@ -71,6 +75,8 @@ function ApiHandler() {
   }, [searchInput, fetchSearchResults]);
 
   async function searchArtist(artistName = searchInput) {
+    setArtistDisplay(artistName);
+    setGameStarted(true);
     const trackSet = new Set();
     const trackAndPopularity = {};
     var artistID = await fetch(
@@ -84,8 +90,8 @@ function ApiHandler() {
 
     var albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
-      artistID +
-      "/albums?market=SE&limit=5&offset=0",
+        artistID +
+        "/albums?market=SE&limit=5&offset=0",
       artistParameters
     )
       .then((response) => response.json())
@@ -125,33 +131,30 @@ function ApiHandler() {
           trackAndPopularity[track.name] = track.popularity;
         });
       });
-  };
+  }
 
   return (
     <div className="App">
-
       <div className="row d-flex">
-        <SearchBar
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          searchResults={searchResults}
-          searchArtist={searchArtist}
-          setSearchResults={setSearchResults}
-        />
-        {
-          tracksFromArtist.length > 0 &&
-          <GamePage tracks={tracksFromArtist} />
-        }
+        {tracksFromArtist.length === 0 ? (
+          <div className="col-8 offset-2 mt-5">
+            <SearchBar
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+              searchResults={searchResults}
+              searchArtist={searchArtist}
+              setSearchResults={setSearchResults}
+            />
+          </div>
+        ) : (
+          <div className="col-12">
+            <h1 className="display-3">Current Artist: {artistDisplay}</h1>
+            <GamePage tracks={tracksFromArtist} />
+          </div>
+        )}
       </div>
-
-    </div >
-
+    </div>
   );
 }
 
-
-
-
-
 export default ApiHandler;
-
