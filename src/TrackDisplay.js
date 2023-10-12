@@ -6,18 +6,22 @@ function TrackDisplay(props) {
         props.scoreFunction(props.track.id)
     }
 
-    if (props.length > 0 || props.showPopularity === true) {
-        return (
-            <button type="button" onClick={() => handleClick()} className="btn btn-primary col-4" disabled={props.isDisabled}>
-                < img src={props.track.album.images[0].url} style={{outline: "thick solid white", boxShadow: "16px 16px #191414"}}alt="" width="256" height="256"/>
-                <p>{props.track.name}</p>
-                {props.showPopularity && (
-                    <p>{props.track.popularity}</p>
-                )}
-            </button>
-        )
-    }
-
+  if (props.length > 0) {
+    return (
+      <div style={{ display: "inline" }}>
+        <img
+          className="mx-4"
+          src={props.track.album.images[0].url}
+          onClick={handleClick}
+          alt=""
+          width="550"
+          height="550"
+        />
+        <p className="imagetext-1 display-3" style={{ display: "inline", color: "red"}}>test</p>
+        <button type="button" onClick={() => handleClick()} className="btn btn-primary col-4" disabled={props.isDisabled}></button>
+      </div>
+    );
+  }
 }
 
-export default TrackDisplay
+export default TrackDisplay;

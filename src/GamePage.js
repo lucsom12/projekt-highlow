@@ -83,9 +83,11 @@ function GamePage({ tracks }) {
         <div className='container'>
             <div className="row d-flex justify-content-center align-items-center">
                 <p>Highest Score: {hiScore}</p>
-                <p>Score: {score}</p>
+                <p>Score: {score}</p>   
+                <div className="col-12">
                 <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
                 <TrackDisplay track={trackList[trackList.length - 2]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
+                </div>
             </div>
             <Button onClick={postScore()}> Post to firebase</Button>
         </div>
