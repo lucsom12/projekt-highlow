@@ -35,13 +35,6 @@ function GamePage({ tracks }) {
         }
     }
 
-    async function flashPopularity(delay, loserIndex) {
-        setShowTrackPopularity(true)
-        await timeout(2000)
-        setShowTrackPopularity(false)
-        updateTrackList(loserIndex)
-    }
-
     function updateScore() {
         const newScore = score + 1;
         setScore(newScore)
@@ -51,7 +44,7 @@ function GamePage({ tracks }) {
     function stateSuccess(loserIndex) {
         console.log('success')
         updateScore()
-        flashPopularity(2000, loserIndex)
+        updateTrackList(2000, loserIndex)
     }
 
     function stateGameOver() {
@@ -60,11 +53,10 @@ function GamePage({ tracks }) {
         setShowTrackPopularity(true)
     }
 
-    function updateTrackList(loserIndex) {
-        if (trackList.length === 2) {
-            alert('congrats you got max score!')
-            console.log('done')
-        }
+    async function updateTrackList(popularityDelay, loserIndex) {
+        setShowTrackPopularity(true)
+        await timeout(popularityDelay)
+        setShowTrackPopularity(false)
 
         let remove = [trackIndex[loserIndex]];
 
@@ -80,6 +72,12 @@ function GamePage({ tracks }) {
         for (let i = remove.length - 1; i >= 0; i--) trackList.splice(remove[i], 1);
 
         console.log("post: " + trackList.length)
+
+        
+        if (trackList.length <= 2) {
+            alert('congrats you got max score!')
+            console.log('done')
+        }
 
         setRandTracks(twoRandomTracks(trackList))
     }
