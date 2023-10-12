@@ -10,6 +10,7 @@ function GamePage({ tracks }) {
     const [hiScore, setHiScore] = useState(0);
     const [showTrackPopularity, setShowTrackPopularity] = useState(false);
     const [randTracks, setRandTracks] = useState(twoRandomTracks(trackList));
+    const [isDisabled, setDisabled] = useState(false);
 
     function timeout(delay) {
         return new Promise( res => setTimeout(res, delay) );
@@ -50,7 +51,12 @@ function GamePage({ tracks }) {
     function stateGameOver() {
         console.log('game over')
         alert('game over')
+        endGame()
+    }
+
+    function endGame() {
         setShowTrackPopularity(true)
+        setDisabled(true)
     }
 
     async function updateTrackList(popularityDelay, loserIndex) {
@@ -75,6 +81,7 @@ function GamePage({ tracks }) {
 
         
         if (trackList.length <= 2) {
+            endGame()
             alert('congrats you got max score!')
             console.log('done')
         }
@@ -106,8 +113,8 @@ function GamePage({ tracks }) {
             <div className="row d-flex justify-content-center align-items-center">
                 <p>Highest Score: {hiScore}</p>
                 <p>Score: {score}</p>
-                <TrackDisplay track={randTracks[0]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity}/>
-                <TrackDisplay track={randTracks[1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity}/>
+                <TrackDisplay track={randTracks[0]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled}/>
+                <TrackDisplay track={randTracks[1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled}/>
             </div>
         </div>
     )
