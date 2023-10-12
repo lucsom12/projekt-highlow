@@ -26,24 +26,24 @@ function Footer() {
   return (
     <div className="container">
       <footer className=" footer">
-        <ul class="nav justify-content-center border-bottom pb-2 mb-3">
+        <ul class="nav col-10 offset-1 justify-content-center border-bottom pb-2 mb-3 rounded-circle">
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">
+            <a href="https://github.com/sternleo" target="_blank" class="nav-link px-2 text-body-secondary">
               Leo Stern
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">
+            <a href="https://github.com/lucsom12" target="_blank" class="nav-link px-2 text-body-secondary">
               Luc Sommerland
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">
+            <a href="https://github.com/Joar-Rinaldo-Roos" target="_blank" class="nav-link px-2 text-body-secondary">
               Joar Rinaldo-Roos
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">
+            <a href="https://github.com/AdamTegelberg" target="_blank" class="nav-link px-2 text-body-secondary">
               Adam Tegelberg Hägnefors
             </a>
           </li>
