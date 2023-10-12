@@ -4,54 +4,77 @@ import React, { useState } from "react";
 function GamePage({ tracks }) {
     let trackList = tracks
     let trackIndex = []
+    let streak = 0 
+    const maxStreak = 2
     const [score, setScore] = useState(0);
     const [hiScore, setHiScore] = useState(0);
     const [showTrackPopularity, setShowTrackPopularity] = useState(false);
     const [randTracks, setRandTracks] = useState(twoRandomTracks(trackList));
 
+    function timeout(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+
     function evaluateChoice(trackId) {
         console.log("hello")
         for (let i = 0; i < randTracks.length; i++) {
-            const other = Math.abs(i-1)
+            const otherIndex = Math.abs(i-1)
 
             console.log(trackId + " " + randTracks[i].id)
 
             if (randTracks[i].id === trackId) {
-                if (randTracks[i].popularity >= randTracks[other].popularity) {
-                    updateScore(trackId)
+                if (randTracks[i].popularity >= randTracks[otherIndex].popularity) {
+                    stateSuccess(otherIndex)
                 }
                 else {
-                    gameOver()
+                    stateGameOver()
                 }
+
+                return
             }
         }
     }
 
-    function updateScore(trackId) {
-        console.log('success')
-        // setScore((object) => {
-        //     const clone = object
-        //     return clone + 1
-        //  })
+    async function flashPopularity(delay, loserIndex) {
+        setShowTrackPopularity(true)
+        await timeout(2000)
+        setShowTrackPopularity(false)
+        updateTrackList(loserIndex)
+    }
+
+    function updateScore() {
         const newScore = score + 1;
         setScore(newScore)
         setHiScore(Math.max(hiScore, newScore))
-        //setShowTrackPopularity(true)
-        //paus
-        //setShowTrackPopularity(false)
-        updateTrackList()
+    }
+    
+    function stateSuccess(loserIndex) {
+        console.log('success')
+        updateScore()
+        flashPopularity(2000, loserIndex)
     }
 
-    function gameOver(trackId) {
+    function stateGameOver() {
         console.log('game over')
+        alert('game over')
+        setShowTrackPopularity(true)
     }
 
-    function updateTrackList() {
-        if (trackList.length <= 2) {
+    function updateTrackList(loserIndex) {
+        if (trackList.length === 2) {
             alert('congrats you got max score!')
             console.log('done')
         }
-        const remove = [trackIndex[0], trackIndex[1]];
+
+        let remove = [trackIndex[loserIndex]];
+
+        streak += 1;
+        if (streak === maxStreak) {
+            streak = 0
+            remove.push(trackIndex[Math.abs(loserIndex-1)])
+        }
+
+        console.log("streak: " + streak)
  
         console.log("pre: " + trackList.length)
         for (let i = remove.length - 1; i >= 0; i--) trackList.splice(remove[i], 1);
