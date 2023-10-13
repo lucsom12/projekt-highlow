@@ -2,7 +2,7 @@ import { FormControl } from "react-bootstrap";
 import TrackDisplay from "./TrackDisplay";
 import GamePage from "./GamePage";
 import React, { useEffect, useState, useCallback } from "react";
-import _ from "lodash";
+import _, { shuffle } from "lodash";
 import SearchBar from './SearchBar'; // Import the SearchBar component
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
@@ -120,7 +120,7 @@ function ApiHandler() {
         return Promise.all(trackpromises);
       })
       .then((trackArray) => {
-        setTracksFromArtist(trackArray);
+        setTracksFromArtist(shuffle(trackArray));
         trackArray.forEach((track) => {
           trackAndPopularity[track.name] = track.popularity;
         });
