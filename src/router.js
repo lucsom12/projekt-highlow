@@ -19,10 +19,10 @@ const router = createBrowserRouter([
         path: "/home",
         element: <LandingPage />
       },
-      {
-        path: "/devF",
-        element: <FirebaseDev />
-      },
+      // {
+      //   path: "/devF",
+      //   element: <FirebaseDev />
+      // },
       {
         path: "/leader-board",
         element: <LeaderBoard />

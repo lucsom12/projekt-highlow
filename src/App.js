@@ -69,11 +69,11 @@ function DevNavBar() {
           game
         </NavLink>
       </li>
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <NavLink className="nav-link" to="/devF">
           devFirebase
         </NavLink>
-      </li>
+      </li> */}
       <li className="nav-item">
         <NavLink className="nav-link" to="/leader-board">
           LeaderBoard
