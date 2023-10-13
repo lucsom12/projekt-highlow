@@ -12,24 +12,6 @@ function GamePage({ tracks }) {
         return new Promise( res => setTimeout(res, delay) );
     }
 
-    function shuffle(array) {
-        let currentIndex = array.length,  randomIndex;
-      
-        // While there remain elements to shuffle.
-        while (currentIndex > 0) {
-      
-          // Pick a remaining element.
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-      
-          // And swap it with the current element.
-          [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
-      
-        return array;
-    }
-
     function evaluateChoice(trackId) {
         if (trackList[trackList.length-1].id === trackId) {
             compareTracks(1);
@@ -101,4 +83,4 @@ function GamePage({ tracks }) {
     )
 }
 
-export default GamePage
+export default GamePage;
