@@ -22,7 +22,7 @@ export default function App() {
   return (
     <div className="container">
       <div className="col-12">
-        <DevNavBar />
+      {!gameStarted && <DevNavBar />}
         <Outlet context={{setGameStarted}}/>
       </div>
       {!gameStarted && <Footer />}

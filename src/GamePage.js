@@ -79,19 +79,17 @@ function GamePage({ tracks }) {
     }
 
 
-    return (
-        <div className='container'>
-            <div className="row d-flex justify-content-center align-items-center">
-                <p>Highest Score: {hiScore}</p>
-                <p>Score: {score}</p>   
-                <div className="col-12">
-                <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
-                <TrackDisplay track={trackList[trackList.length - 2]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
-                </div>
-            </div>
-            <Button onClick={postScore()}> Post to firebase</Button>
-        </div>
-    )
+  return (
+    <div className="row d-flex justify-content-between align-items-center">
+      <div className="col">
+      <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
+      </div>
+      <div className="col">
+      <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
+      </div>
+      <Button onClick={postScore()}> Post to firebase</Button>
+    </div>
+  );
 }
 
 export default GamePage;
