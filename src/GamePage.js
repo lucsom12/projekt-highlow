@@ -16,7 +16,7 @@ function GamePage({ tracks }) {
     }
 
     function evaluateChoice(trackId) {
-        if (trackList[trackList.length-1].id === trackId) {
+        if (trackList[trackList.length - 1].id === trackId) {
             compareTracks(1);
         }
         else {
@@ -25,8 +25,8 @@ function GamePage({ tracks }) {
     }
 
     function compareTracks(index) {
-        const otherIndex = (index === 1) ? 2 : 1; 
-        if (trackList[trackList.length-index].popularity >= trackList[trackList.length-otherIndex].popularity) {
+        const otherIndex = (index === 1) ? 2 : 1;
+        if (trackList[trackList.length - index].popularity >= trackList[trackList.length - otherIndex].popularity) {
             stateSuccess(index);
         }
         else {
@@ -39,12 +39,12 @@ function GamePage({ tracks }) {
         setScore(newScore);
         setHiScore(Math.max(hiScore, newScore));
     }
-    
+
     async function updateTrackList(popularityDelay, winnerSide) {
         setShowTrackPopularity(true);
         await timeout(popularityDelay);
         setShowTrackPopularity(false);
-        
+
         if (trackList.length <= 2) {
             alert('congrats you got max score!')
             console.log('done')
@@ -84,8 +84,8 @@ function GamePage({ tracks }) {
             <div className="row d-flex justify-content-center align-items-center">
                 <p>Highest Score: {hiScore}</p>
                 <p>Score: {score}</p>
-                <TrackDisplay track={trackList[trackList.length-1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled}/>
-                <TrackDisplay track={trackList[trackList.length-2]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled}/>
+                <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
+                <TrackDisplay track={trackList[trackList.length - 2]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
             </div>
             <Button onClick={postScore()}> Post to firebase</Button>
         </div>
