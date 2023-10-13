@@ -2,11 +2,7 @@ import TrackDisplay from "./TrackDisplay";
 import React, { useState } from "react";
 
 function GamePage({ tracks }) {
-    const [trackList, setTrackList] = shuffle([tracks]);
-    console.log(trackList)
-    let trackIndex = [];
-    let streak = 0;
-    const maxStreak = 2;
+    const trackList = tracks;
     const [score, setScore] = useState(0);
     const [hiScore, setHiScore] = useState(0);
     const [showTrackPopularity, setShowTrackPopularity] = useState(false);
@@ -35,29 +31,21 @@ function GamePage({ tracks }) {
     }
 
     function evaluateChoice(trackId) {
-        // for (let i = trackList.length-1; i >= trackList.length-2; i--) {
-            
-        // }
         if (trackList[trackList.length-1].id === trackId) {
-            if (trackList[trackList.length-1].popularity >= trackList[trackList.length-2].popularity) {
-                stateSuccess(1);
-            }
-            else {
-                stateGameOver();
-            }
-
-            return;
+            compareTracks(1);
         }
+        else {
+            compareTracks(2);
+        }
+    }
 
-        if (trackList[trackList.length-2].id === trackId) {
-            if (trackList[trackList.length-2].popularity >= trackList[trackList.length-1].popularity) {
-                stateSuccess(2);
-            }
-            else {
-                stateGameOver();
-            }
-
-            return;
+    function compareTracks(index) {
+        const otherIndex = (index === 1) ? 2 : 1; 
+        if (trackList[trackList.length-index].popularity >= trackList[trackList.length-otherIndex].popularity) {
+            stateSuccess(index);
+        }
+        else {
+            stateGameOver();
         }
     }
 
