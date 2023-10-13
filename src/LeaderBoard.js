@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 
 function LeaderBoard() {
 
-    const db = getFirestore();
-    const scoresCollection = collection(db, "LeaderBoard2");
     const [players, setPlayers] = useState([])
     let mockPlayers = [
         { name: 'adam', score: 200 },
@@ -15,12 +13,18 @@ function LeaderBoard() {
     ];
     useEffect(() => {
         async function fetchData() {
+            const db = getFirestore();
+            const scoresCollection = collection(db, "LeaderBoard2");
+
+            console.log("fetching data");
             try {
                 const querySnapshot = await getDocs(scoresCollection);
-                const data = querySnapshot.docs.map((doc) => {
+                const data = []
+                querySnapshot.forEach((doc) => {
                     const { playerName, score } = doc.data();
-                    return { playerName, score };
+                    data.push({ playerName, score });
                 });
+
                 // Sort the data by score in descending order
                 data.sort((a, b) => b.score - a.score);
                 setPlayers(data);
@@ -31,7 +35,7 @@ function LeaderBoard() {
         }
 
         fetchData();
-    }, [scoresCollection]);
+    }, []);
 
 
 

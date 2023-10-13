@@ -1,6 +1,7 @@
 import TrackDisplay from "./TrackDisplay";
 import React, { useEffect, useState } from "react";
 import { addDoc, collection, getFirestore } from "@firebase/firestore";
+import { Button } from "react-bootstrap";
 
 function GamePage({ tracks }) {
     let trackList = tracks
@@ -154,6 +155,7 @@ function GamePage({ tracks }) {
                 <TrackDisplay track={randTracks[0]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
                 <TrackDisplay track={randTracks[1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
             </div>
+            <Button onClick={postScore()}> Post to firebase</Button>
         </div>
     )
 }
