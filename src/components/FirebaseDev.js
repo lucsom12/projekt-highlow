@@ -1,21 +1,37 @@
 import { collection, addDoc, getFirestore, query, where, getDocs } from "firebase/firestore";
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
 import firebase from "firebase/compat/app";
-// Required for side-effects
 import "firebase/firestore";
 import { useState } from "react";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useEffect } from "react";
-import { push } from "@firebase/database";
 import firebaseConfig from "./firebase-config"
+import { useLoaderData } from "react-router";
 
 
+//useoutlet
+
+// export const postScoreToFirebase = async (playerName, score) => { //use this to make it more modular and the same for fetch
+//   try {
+//     const docRef = await addDoc(usersCollection, {
+//       playerName: playerName,
+//       age: age,
+//       score: JSON.stringify(score),
+//     });
+//     console.log('Document written with ID: ', docRef.id);
+//     fetchData().then((userData) => {
+//       setData(userData);
+//     });
+
+//   } catch (error) {
+//     console.error('Error adding document: ', error);
+//   }
+// }
 
 
-export default function HomePage() {
+export default function FirebaseDev() {
   firebase.initializeApp(firebaseConfig);
+  const score = useLoaderData("1");
 
   const db = getFirestore(); // Replace with your Firestore initialization code
   const usersCollection = collection(db, 'LeaderBoard2'); // Specify the name of your collection
@@ -25,19 +41,13 @@ export default function HomePage() {
   const q = query(usersCollection, playerName);
 
   const [data, loading, error] = useCollection(q);
-
-
-  const addScore = () => {
-    addDoc(data, {
-      playerName: playerName
-    })
-  }
-  async function pushInformation(playerName, age, score) {
+  //TODO modular 
+  async function pushInformation(playerName, age) {
     try {
       const docRef = await addDoc(usersCollection, {
         playerName: playerName,
         age: age,
-        score: score,
+        score: JSON.stringify(score),
       });
       console.log('Document written with ID: ', docRef.id);
       fetchData().then((userData) => {
@@ -80,7 +90,7 @@ export default function HomePage() {
       <ul>
         {dat.map((item, index) => (
           <li key={index}>
-            Player Name: {item.playerName}, Age: {item.age}, Score: {item.score}
+            Player Name: {item.playerName}, Score: {item.score}
           </li>
         ))}
       </ul>

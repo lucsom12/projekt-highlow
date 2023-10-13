@@ -1,5 +1,7 @@
 import TrackDisplay from "./TrackDisplay";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { addDoc, collection, getFirestore } from "@firebase/firestore";
+import { Button } from "react-bootstrap";
 
 function GamePage({ tracks }) {
     const trackList = tracks;
@@ -7,9 +9,10 @@ function GamePage({ tracks }) {
     const [hiScore, setHiScore] = useState(0);
     const [showTrackPopularity, setShowTrackPopularity] = useState(false);
     const [isDisabled, setDisabled] = useState(false);
+    const [playerName, setPlayerName] = useState("Anders");
 
     function timeout(delay) {
-        return new Promise( res => setTimeout(res, delay) );
+        return new Promise(res => setTimeout(res, delay));
     }
 
     function evaluateChoice(trackId) {
@@ -64,6 +67,11 @@ function GamePage({ tracks }) {
         alert('game over');
         endGame();
     }
+    async function postScore() {
+        const db = getFirestore();
+        const scoresCollection = collection(db, "LeaderBoard2");
+        await addDoc(scoresCollection, { Name: playerName, score: score });
+    }
 
     function endGame() {
         setShowTrackPopularity(true);
@@ -79,6 +87,7 @@ function GamePage({ tracks }) {
                 <TrackDisplay track={trackList[trackList.length-1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled}/>
                 <TrackDisplay track={trackList[trackList.length-2]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled}/>
             </div>
+            <Button onClick={postScore()}> Post to firebase</Button>
         </div>
     )
 }
