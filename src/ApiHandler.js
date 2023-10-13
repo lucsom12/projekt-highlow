@@ -139,7 +139,7 @@ function ApiHandler() {
           setSearchResults={setSearchResults}
         />
         {
-          tracksFromArtist.length > 0 &&
+          tracksFromArtist.length > 1 &&
           <GamePage tracks={tracksFromArtist} />
         }
       </div>
