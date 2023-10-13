@@ -39,6 +39,7 @@
 /* landing page styling */
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700,900,400italic,700italic,900italic);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&family=Mulish:wght@300;400&display=swap');
 
 *,
 :before,
@@ -165,10 +166,68 @@ body {
   }
 }
 
+/* Game page styling */
+
 
 .imagetext-1{
   position: absolute;
-  top: 60%;
-  left: 30%;
+  top: 15%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  width:90%;
+  color:white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 2.1rem;
+  text-shadow: 
+        -1px -1px 0 black,
+        -1px 1px 0 black,
+        1px -1px 0 black,
+        1px 1px 0 black;
+}
+
+.imagetext-2{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:90%;
+  color:white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 2.1rem;
+  text-shadow: 
+        -1px -1px 0 black,
+        -1px 1px 0 black,
+        1px -1px 0 black,
+        1px 1px 0 black;
+}
+
+img {
+  filter: brightness(100%);
+  transition: filter 1s;
+}
+
+img.dimmed {
+  filter: brightness(40%);
+}
+
+.imagetext-1 {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.imagetext-1.faded-in {
+  opacity: 1;
+}
+
+.imagetext-2 {
+  opacity: 0;
+  transition: opacity 1s 1200ms;
+}
+
+.imagetext-2.faded-in {
+  opacity: 1;
 }
