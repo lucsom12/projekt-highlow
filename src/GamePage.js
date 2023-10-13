@@ -40,7 +40,7 @@ function GamePage({ tracks }) {
         // }
         if (trackList[trackList.length-1].id === trackId) {
             if (trackList[trackList.length-1].popularity >= trackList[trackList.length-2].popularity) {
-                stateSuccess(trackList.length-2);
+                stateSuccess(1);
             }
             else {
                 stateGameOver();
@@ -51,7 +51,7 @@ function GamePage({ tracks }) {
 
         if (trackList[trackList.length-2].id === trackId) {
             if (trackList[trackList.length-2].popularity >= trackList[trackList.length-1].popularity) {
-                stateSuccess(trackList.length-1);
+                stateSuccess(2);
             }
             else {
                 stateGameOver();
@@ -67,19 +67,20 @@ function GamePage({ tracks }) {
         setHiScore(Math.max(hiScore, newScore));
     }
     
-    async function updateTrackList(popularityDelay, loserIndex) {
+    async function updateTrackList(popularityDelay, winnerSide) {
         setShowTrackPopularity(true);
         await timeout(popularityDelay);
         setShowTrackPopularity(false);
         
-        trackList.pop()
-        trackList.pop()
-        // setTrackList((object) => {
-        //     const clone = object;
-        //     clone.pop()
-        //     clone.pop()
-        //     return clone;
-        // })
+        if (trackList.length <= 2) {
+            alert('congrats you got max score!')
+            console.log('done')
+            endGame()
+            return
+        }
+        else {
+            trackList.pop()
+        }
     }
 
     function stateSuccess(loserIndex) {
