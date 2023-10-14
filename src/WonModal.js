@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain }) {
+function WonModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain }) {
   const navigate = useNavigate();
   return (
     <div
@@ -20,7 +20,8 @@ function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlay
             ></button>
           </div>
           <div className="modal-body display-5">
-            <p>Score: {score}</p>
+            <p>You got the max score for this artist!
+                Score: {score}</p>
           </div>
           <div className="modal-footer justify-content-center text-center">
             <button
@@ -52,4 +53,4 @@ function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlay
   );
 }
 
-export default GameOverModal;
+export default WonModal;

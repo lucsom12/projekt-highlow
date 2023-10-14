@@ -133,6 +133,10 @@ function ApiHandler() {
         });
       });
   }
+
+  function playAgain(){
+    searchArtist(artistDisplay);
+  }
   
 
   return (
@@ -151,7 +155,7 @@ function ApiHandler() {
         ) : (
           <div className="col-12">
             <h1 className="artisttext">Current Artist: {artistDisplay}</h1>
-            <GamePage tracks={tracksFromArtist} />
+            <GamePage tracks={tracksFromArtist} resetGame={playAgain}/>
           </div>
         )}
       </div>

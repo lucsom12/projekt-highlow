@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { addDoc, collection, getFirestore } from "@firebase/firestore";
 import { Button } from "react-bootstrap";
 import GameOverModal from "./GameOverModal";
+import WonModal from "./WonModal";
 
-function GamePage({ tracks }) {
+function GamePage({ tracks, resetGame}) {
     const trackList = tracks;
     const [score, setScore] = useState(0);
     const [hiScore, setHiScore] = useState(0);
@@ -13,6 +14,7 @@ function GamePage({ tracks }) {
     const [playerName, setPlayerName] = useState("Anders");
     const [isGameOver, setIsGameOver] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showWonModal, setShowWonModal] = useState(false);
 
 
     function timeout(delay) {
@@ -57,8 +59,8 @@ function GamePage({ tracks }) {
         setShowTrackPopularity(false);
 
         if (trackList.length <= 2) {
-            alert('congrats you got max score!')
-            console.log('done')
+            setShowWonModal(true);
+            setIsGameOver(true);
             endGame()
             return
         }
@@ -88,12 +90,24 @@ function GamePage({ tracks }) {
         await addDoc(scoresCollection, { Name: playerName, score: score });
     }
 
+    function resetGameState() {
+        setScore(0);
+        setIsGameOver(false);
+        setShowModal(false);
+        setShowWonModal(false);
+        setDisabled(false);
+        setShowTrackPopularity(false);
+    }
+
+    function playAgain(){
+        resetGameState();
+        resetGame();
+    }
+
     function endGame() {
         setShowTrackPopularity(true);
         setDisabled(true);
     }
-
-/*<Button onClick={postScore}> Post to firebase</Button>*/
   return (
     <div className="row d-flex justify-content-between align-items-center">
       <div className="col">
@@ -110,8 +124,8 @@ function GamePage({ tracks }) {
             <p display-2 className="hiscore">High Score: {hiScore}</p>
         </div>
       </div>
-      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal}/>}
-      
+      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain}/>}
+      {isGameOver && <WonModal score={score} show={showWonModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain}/>}
     </div>
   );
 }
