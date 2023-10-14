@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain }) {
+function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain, artist }) {
   const navigate = useNavigate();
   return (
     <div
@@ -33,7 +33,7 @@ function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlay
             <button
               type="button"
               className="btn modal-leaderboard"
-              onClick={handleLeaderboard}
+              onClick={()=> navigate("/leader-board")}
             >
               Submit to Leaderboard
             </button>
@@ -51,5 +51,7 @@ function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlay
     </div>
   );
 }
+
+
 
 export default GameOverModal;
