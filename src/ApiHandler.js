@@ -77,6 +77,8 @@ function ApiHandler() {
   async function searchArtist(artistName = searchInput) {
     setArtistDisplay(artistName);
     setGameStarted(true);
+    setArtistDisplay(artistName);
+    setGameStarted(true);
     const trackSet = new Set();
     const trackAndPopularity = {};
     var artistID = await fetch(
@@ -90,6 +92,8 @@ function ApiHandler() {
 
     var albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
+        artistID +
+        "/albums?market=SE&limit=5&offset=0",
         artistID +
         "/albums?market=SE&limit=5&offset=0",
       artistParameters
@@ -132,6 +136,7 @@ function ApiHandler() {
         });
       });
   }
+  
 
   return (
     <div className="App">
