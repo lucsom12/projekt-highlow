@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function GameOverModal({ score, show, handleClose }) {
+function GameOverModal({ score, show, handleClose, artist }) {
   const navigate = useNavigate();
   return (
     <div
@@ -32,9 +32,21 @@ function GameOverModal({ score, show, handleClose }) {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={ ()=> navigate(0) }
+              onClick={() => navigate(0)}
             >
               Play Again
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() =>
+                navigate("/leader-board", {
+                  state: { score: score, artist: artist },
+                  replace: false,
+                })
+              }
+            >
+              Leader Board
             </button>
           </div>
         </div>
