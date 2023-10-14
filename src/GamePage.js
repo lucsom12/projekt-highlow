@@ -15,16 +15,22 @@ function GamePage({ tracks }) {
         return new Promise(res => setTimeout(res, delay));
     }
 
-    function evaluateChoice(trackId) {
-        if (trackList[trackList.length - 1].id === trackId) {
-            compareTracks(1);
-        }
-        else {
-            compareTracks(2);
+    function evaluateChoice(trackId, choice) {
+        const leftTrackPopularity = trackList[trackList.length - 1].popularity;
+        const rightTrackPopularity = trackList[trackList.length - 2].popularity;
+    
+        if (choice === "higher" && rightTrackPopularity > leftTrackPopularity) {
+            stateSuccess("right");
+        } else if (choice === "lower" && rightTrackPopularity < leftTrackPopularity) {
+            stateSuccess("right");
+        } else {
+            stateGameOver();
         }
     }
+    
+    
 
-    function compareTracks(index) {
+   /* function compareTracks(index) {
         const otherIndex = (index === 1) ? 2 : 1;
         if (trackList[trackList.length - index].popularity >= trackList[trackList.length - otherIndex].popularity) {
             stateSuccess(index);
@@ -32,7 +38,7 @@ function GamePage({ tracks }) {
         else {
             stateGameOver();
         }
-    }
+    }*/
 
     function updateScore() {
         const newScore = score + 1;
@@ -41,6 +47,7 @@ function GamePage({ tracks }) {
     }
 
     async function updateTrackList(popularityDelay, winnerSide) {
+        console.log("Winner Side:", winnerSide);
         setShowTrackPopularity(true);
         await timeout(popularityDelay);
         setShowTrackPopularity(false);
@@ -82,12 +89,12 @@ function GamePage({ tracks }) {
   return (
     <div className="row d-flex justify-content-between align-items-center">
       <div className="col">
-      <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
+      <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={true} isDisabled={isDisabled} isLeft={true}/>
       </div>
       <div className="col">
-      <TrackDisplay track={trackList[trackList.length - 1]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} />
+      <TrackDisplay track={trackList[trackList.length - 2]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} isRight={true}/>
       </div>
-      <Button onClick={postScore()}> Post to firebase</Button>
+      <Button onClick={postScore}> Post to firebase</Button>
     </div>
   );
 }

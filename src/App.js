@@ -7,7 +7,6 @@ import { FormControl } from "react-bootstrap";
 import ApiHandler from "./ApiHandler";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import LandingPage from "./LandingPage";
-import HomePage from "./components/HomePage";
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
@@ -34,23 +33,23 @@ function Footer() {
   return (
     <div className="container">
       <footer className=" footer">
-        <ul class="nav col-10 offset-1 justify-content-center border-bottom rounded-circle pb-2 mb-3">
-          <li class="nav-item">
+        <ul className="nav col-10 offset-1 justify-content-center border-bottom rounded-circle pb-2 mb-3">
+          <li className="nav-item">
             <a href="https://github.com/sternleo" target="_blank" className="nav-link px-2 text-body-secondary">
               Leo Stern
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a href="https://github.com/lucsom12" target="_blank" className="nav-link px-2 text-body-secondary">
               Luc Sommerland
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a href="https://github.com/Joar-Rinaldo-Roos" target="_blank" className="nav-link px-2 text-body-secondary">
               Joar Rinaldo-Roos
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a href="https://github.com/AdamTegelberg" target="_blank" className="nav-link px-2 text-body-secondary">
               Adam Tegelberg Hägnefors
             </a>

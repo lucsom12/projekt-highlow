@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 function TrackDisplay(props) {
-  function handleClick() {
-    console.log("rumpa!");
-    props.scoreFunction();
+  function handleClick(choice) {
+    props.scoreFunction(props.track.id, choice);
   }
   const imgRef = useRef(null);
   const textRef = useRef(null);
   const textRef2 = useRef(null);
+  const textRef3 = useRef(null);
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
@@ -26,6 +26,17 @@ function TrackDisplay(props) {
     };
   }, []);
 
+  useEffect(() => {
+    const timer2 = setTimeout(() => {
+      if (textRef3.current) {
+        textRef3.current.classList.add("faded-in");
+      }
+    }, 10);
+    return () => {
+      clearTimeout(timer2);
+    };
+  }, [props.showPopularity]);
+
   if (props.length > 0) {
     return (
       <div
@@ -40,14 +51,41 @@ function TrackDisplay(props) {
           ref={imgRef}
           className="img-fluid"
           src={props.track.album.images[0].url}
-          onClick={handleClick}
           alt=""
         />
         <p ref={textRef} className="imagetext-1">
           "{props.track.name}"
         </p>
-        <p ref={textRef2} className="imagetext-2">Popularity Score {props.track.popularity}/100</p>
-        <button type="button" onClick={() => handleClick()} className="btn btn-primary col-4" disabled={props.isDisabled}></button>
+        {props.isLeft && (
+          <p ref={textRef2} className="imagetext-2">
+            Popularity Score: {props.track.popularity}/100
+          </p>
+        )}
+        {props.showPopularity && props.isRight && (
+          <p ref={textRef3} className="imagetext-3">
+            Popularity Score: {props.track.popularity}/100
+          </p>
+        )}
+        {props.isRight && (
+          <>
+            <button
+              type="button"
+              onClick={() => handleClick("higher")}
+              className="btn higher-button"
+              disabled={props.isDisabled}
+            >
+              Higher <span className="uniup">&#9650;&#xfe0e;</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleClick("lower")}
+              className="btn lower-button"
+              disabled={props.isDisabled}
+            >
+              Lower <span className="unidown">&#9660;&#xfe0e;</span>
+            </button>
+          </>
+        )}
       </div>
     );
   }

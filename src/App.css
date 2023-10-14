@@ -169,6 +169,14 @@ body {
 /* Game page styling */
 
 
+.artisttext{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size:3rem;
+  color:rgb(215, 215, 215);
+}
+
 .imagetext-1{
   position: absolute;
   top: 15%;
@@ -187,7 +195,7 @@ body {
         1px 1px 0 black;
 }
 
-.imagetext-2{
+.imagetext-2, .imagetext-3{
   position: absolute;
   top: 45%;
   left: 50%;
@@ -230,4 +238,67 @@ img.dimmed {
 
 .imagetext-2.faded-in {
   opacity: 1;
+}
+
+.imagetext-3{
+  opacity: 0;
+  transition: opacity 1s 200ms;
+}
+
+.imagetext-3.faded-in {
+  opacity: 1;
+}
+
+.higher-button{
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:35%;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size:1rem;
+  color:white;
+  border-color:white;
+  border-radius: 20px;
+}
+.higher-button:hover{
+  background-color:#00FF2F;
+  color:rgb(0, 0, 0);
+}
+.lower-button{
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:35%;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size:1rem;
+  color:white;
+  border-color:white;
+  border-radius: 20px;
+}
+
+.lower-button:hover{
+  background-color:#FF8800;
+  color:rgb(0, 0, 0);
+}
+
+.uniup{
+  color:#00FF2F;
+}
+
+.higher-button:hover .uniup {
+  color: white;
+}
+
+.unidown{
+  color:#FF8800;
+}
+
+.lower-button:hover .unidown {
+  color: white;
 }

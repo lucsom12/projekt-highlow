@@ -51,7 +51,7 @@ function ApiHandler() {
         setSearchResults([]);
         return;
       }
-
+  
       const response = await fetch(
         `https://api.spotify.com/v1/search?q=${query}&type=artist`,
         artistParameters
@@ -65,18 +65,17 @@ function ApiHandler() {
     }, 300),
     [accessToken]
   );
-
+  
   useEffect(() => {
     if (searchInput) {
       fetchSearchResults(searchInput);
     } else {
+      fetchSearchResults.cancel(); // Cancel the debounced function
       setSearchResults([]);
     }
   }, [searchInput, fetchSearchResults]);
 
   async function searchArtist(artistName = searchInput) {
-    setArtistDisplay(artistName);
-    setGameStarted(true);
     setArtistDisplay(artistName);
     setGameStarted(true);
     const trackSet = new Set();
@@ -92,10 +91,8 @@ function ApiHandler() {
 
     var albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/albums?market=SE&limit=5&offset=0",
-        artistID +
-        "/albums?market=SE&limit=5&offset=0",
+      artistID +
+      "/albums?market=SE&limit=5&offset=0",
       artistParameters
     )
       .then((response) => response.json())
@@ -153,7 +150,7 @@ function ApiHandler() {
           </div>
         ) : (
           <div className="col-12">
-            <h1 className="display-3">Current Artist: {artistDisplay}</h1>
+            <h1 className="artisttext">Current Artist: {artistDisplay}</h1>
             <GamePage tracks={tracksFromArtist} />
           </div>
         )}
