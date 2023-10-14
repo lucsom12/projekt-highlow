@@ -2,6 +2,7 @@ import TrackDisplay from "./TrackDisplay";
 import React, { useEffect, useState } from "react";
 import { addDoc, collection, getFirestore } from "@firebase/firestore";
 import { Button } from "react-bootstrap";
+import GameOverModal from "./GameOverModal";
 
 function GamePage({ tracks }) {
     const trackList = tracks;
@@ -10,6 +11,9 @@ function GamePage({ tracks }) {
     const [showTrackPopularity, setShowTrackPopularity] = useState(false);
     const [isDisabled, setDisabled] = useState(false);
     const [playerName, setPlayerName] = useState("Anders");
+    const [isGameOver, setIsGameOver] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
 
     function timeout(delay) {
         return new Promise(res => setTimeout(res, delay));
@@ -70,9 +74,13 @@ function GamePage({ tracks }) {
     }
 
     function stateGameOver() {
-        console.log('game over');
-        alert('game over');
+        setShowModal(true);
+        setIsGameOver(true);
         endGame();
+        
+    }
+    function closeModal() {
+        setShowModal(false);
     }
     async function postScore() {
         const db = getFirestore();
@@ -85,7 +93,7 @@ function GamePage({ tracks }) {
         setDisabled(true);
     }
 
-
+/*<Button onClick={postScore}> Post to firebase</Button>*/
   return (
     <div className="row d-flex justify-content-between align-items-center">
       <div className="col">
@@ -94,7 +102,16 @@ function GamePage({ tracks }) {
       <div className="col">
       <TrackDisplay track={trackList[trackList.length - 2]} length={trackList.length} scoreFunction={evaluateChoice} showPopularity={showTrackPopularity} isDisabled={isDisabled} isRight={true}/>
       </div>
-      <Button onClick={postScore}> Post to firebase</Button>
+      <div className="row">
+        <div className="col">
+            <p display-2 className="score">Score: {score}</p>
+        </div>
+        <div className="col">
+            <p display-2 className="hiscore">High Score: {hiScore}</p>
+        </div>
+      </div>
+      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal}/>}
+      
     </div>
   );
 }
