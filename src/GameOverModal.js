@@ -26,14 +26,14 @@ function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlay
             <button
               type="button"
               className="btn modal-close"
-              onClick={()=> navigate("/home")}
+              onClick={() => navigate("/home")}
             >
               Home
             </button>
             <button
               type="button"
               className="btn modal-leaderboard"
-              onClick={()=> navigate("/leader-board")}
+              onClick={() => navigate(`/leader-board/${score}`)}
             >
               Submit to Leaderboard
             </button>
@@ -44,7 +44,7 @@ function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlay
             >
               Play Again
             </button>
-            
+
           </div>
         </div>
       </div>

@@ -87,13 +87,13 @@ export default function FirebaseDev() {
       <h1>SpotyHigher Firebase mock</h1>
       <button onClick={() => pushInformation("Joar", "6", "2")}> Push</button>
       <h1>My Data</h1>
-      <ul>
+      {/* <ul>
         {dat.map((item, index) => (
           <li key={index}>
             Player Name: {item.playerName}, Score: {item.score}
           </li>
         ))}
-      </ul>
+      </ul> */}
 
     </div>
   )

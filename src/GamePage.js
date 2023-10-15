@@ -4,8 +4,9 @@ import { addDoc, collection, getFirestore } from "@firebase/firestore";
 import { Button } from "react-bootstrap";
 import GameOverModal from "./GameOverModal";
 import WonModal from "./WonModal";
+import { useParams } from "react-router-dom";
 
-function GamePage({ tracks, resetGame}) {
+function GamePage({ tracks, resetGame }) {
   const trackList = tracks;
   const [score, setScore] = useState(0);
   const [hiScore, setHiScore] = useState(0);
@@ -14,7 +15,7 @@ function GamePage({ tracks, resetGame}) {
   const [playerName, setPlayerName] = useState("Anders");
   const [isGameOver, setIsGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
-    const [showWonModal, setShowWonModal] = useState(false);
+  const [showWonModal, setShowWonModal] = useState(false);
   const artist = trackList[0].artists[0].name;
 
   function timeout(delay) {
@@ -59,16 +60,16 @@ function GamePage({ tracks, resetGame}) {
     await timeout(popularityDelay);
     setShowTrackPopularity(false);
 
-        if (trackList.length <= 2) {
-            setShowWonModal(true);
-            setIsGameOver(true);
-            endGame()
-            return
-        }
-        else {
-            trackList.pop()
-        }
+    if (trackList.length <= 2) {
+      setShowWonModal(true);
+      setIsGameOver(true);
+      endGame()
+      return
     }
+    else {
+      trackList.pop()
+    }
+  }
 
   function stateSuccess(loserIndex) {
     console.log("success");
@@ -76,39 +77,39 @@ function GamePage({ tracks, resetGame}) {
     updateTrackList(2000, loserIndex);
   }
 
-    function stateGameOver() {
-        setShowModal(true);
-        setIsGameOver(true);
-        endGame();
-        
-    }
-    function closeModal() {
-        setShowModal(false);
-    }
-    async function postScore() {
-        const db = getFirestore();
-        const scoresCollection = collection(db, "LeaderBoard2");
-        await addDoc(scoresCollection, { Name: playerName, score: score });
-    }
+  function stateGameOver() {
+    setShowModal(true);
+    setIsGameOver(true);
+    endGame();
 
-    function resetGameState() {
-        setScore(0);
-        setIsGameOver(false);
-        setShowModal(false);
-        setShowWonModal(false);
-        setDisabled(false);
-        setShowTrackPopularity(false);
-    }
+  }
+  function closeModal() {
+    setShowModal(false);
+  }
+  async function postScore() {
+    const db = getFirestore();
+    const scoresCollection = collection(db, "LeaderBoard2");
+    await addDoc(scoresCollection, { Name: playerName, score: score });//want to store the score before posting
+  }
 
-    function playAgain(){
-        resetGameState();
-        resetGame();
-    }
+  function resetGameState() {
+    setScore(0);
+    setIsGameOver(false);
+    setShowModal(false);
+    setShowWonModal(false);
+    setDisabled(false);
+    setShowTrackPopularity(false);
+  }
 
-    function endGame() {
-        setShowTrackPopularity(true);
-        setDisabled(true);
-    }
+  function playAgain() {
+    resetGameState();
+    resetGame();
+  }
+
+  function endGame() {
+    setShowTrackPopularity(true);
+    setDisabled(true);
+  }
   return (
     <div className="row d-flex justify-content-between align-items-center">
       <div className="col">
@@ -143,8 +144,8 @@ function GamePage({ tracks, resetGame}) {
           </p>
         </div>
       </div>
-      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain}/>}
-      {isGameOver && <WonModal score={score} show={showWonModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain}/>}
+      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} />}
+      {isGameOver && <WonModal score={score} show={showWonModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} />}
     </div>
   );
 }

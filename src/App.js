@@ -7,6 +7,8 @@ import { FormControl } from "react-bootstrap";
 import ApiHandler from "./ApiHandler";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import LandingPage from "./LandingPage";
+import firebaseConfig from "./components/firebase-config";
+import { initializeApp } from "firebase/app";
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
@@ -15,14 +17,16 @@ export default function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const location = useLocation();
 
-  useEffect(()=>{
+
+  useEffect(() => {
+    const app = initializeApp(firebaseConfig);
     setGameStarted(false);
   }, [location]);
   return (
     <div className="container">
       <div className="col-12">
-      {!gameStarted && <DevNavBar />}
-        <Outlet context={{setGameStarted}}/>
+        {!gameStarted && <DevNavBar />}
+        <Outlet context={{ setGameStarted }} />
       </div>
       {!gameStarted && <Footer />}
     </div>
@@ -82,7 +86,7 @@ function DevNavBar() {
         </NavLink>
       </li> */}
       <li className="nav-item">
-        <NavLink className="nav-link" to="/leader-board">
+        <NavLink className="nav-link" to="/leader-board/:score">
           LeaderBoard
         </NavLink>
       </li>
