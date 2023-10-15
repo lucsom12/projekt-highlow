@@ -86,7 +86,7 @@ function DevNavBar() {
         </NavLink>
       </li> */}
       <li className="nav-item">
-        <NavLink className="nav-link" to="/leader-board/:score">
+        <NavLink className="nav-link" to="/leader-board/:score/:artist">
           LeaderBoard
         </NavLink>
       </li>

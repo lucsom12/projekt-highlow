@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       //   element: <FirebaseDev />
       // },
       {
-        path: "/leader-board/:score",
+        path: "/leader-board/:score/:artist",
         element: <LeaderBoard />
       }
 

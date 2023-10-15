@@ -1,10 +1,8 @@
 import TrackDisplay from "./TrackDisplay";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { addDoc, collection, getFirestore } from "@firebase/firestore";
-import { Button } from "react-bootstrap";
 import GameOverModal from "./GameOverModal";
 import WonModal from "./WonModal";
-import { useParams } from "react-router-dom";
 
 function GamePage({ tracks, resetGame }) {
   const trackList = tracks;
@@ -144,8 +142,8 @@ function GamePage({ tracks, resetGame }) {
           </p>
         </div>
       </div>
-      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} />}
-      {isGameOver && <WonModal score={score} show={showWonModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} />}
+      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} artist={artist} />}
+      {isGameOver && <WonModal score={score} show={showWonModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} artist={artist} />}
     </div>
   );
 }

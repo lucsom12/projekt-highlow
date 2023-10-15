@@ -33,7 +33,7 @@ function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlay
             <button
               type="button"
               className="btn modal-leaderboard"
-              onClick={() => navigate(`/leader-board/${score}`)}
+              onClick={() => navigate(`/leader-board/${score}/${artist}`, { state: { fromModal: true } })}
             >
               Submit to Leaderboard
             </button>
