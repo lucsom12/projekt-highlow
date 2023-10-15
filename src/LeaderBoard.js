@@ -7,8 +7,6 @@ function LeaderBoard() {
 
     const [players, setPlayers] = useState([]);
     const { score, artist } = useParams();
-
-
     const location = useLocation();
     let cameFromModal = location.state && location.state.fromModal;
 
@@ -56,7 +54,8 @@ function LeaderBoard() {
 
     return (
         <div className="container-md">
-            <h1>LeaderBoard {score}</h1>
+            <h1>LeaderBoard</h1>
+
             <ul className="list-group list-group-numbered">
 
                 {players.map((player, index) => (
