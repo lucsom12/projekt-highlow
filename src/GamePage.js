@@ -21,6 +21,7 @@ function GamePage({ tracks, resetGame }) {
   }
 
   function evaluateChoice(trackId, choice) {
+    setDisabled(true);
     const leftTrackPopularity = trackList[trackList.length - 1].popularity;
     const rightTrackPopularity = trackList[trackList.length - 2].popularity;
 
@@ -56,16 +57,16 @@ function GamePage({ tracks, resetGame }) {
     console.log("Winner Side:", winnerSide);
     setShowTrackPopularity(true);
     await timeout(popularityDelay);
+    setDisabled(false);
     setShowTrackPopularity(false);
 
     if (trackList.length <= 2) {
       setShowWonModal(true);
       setIsGameOver(true);
-      endGame()
-      return
-    }
-    else {
-      trackList.pop()
+      endGame();
+      return;
+    } else {
+      trackList.pop();
     }
   }
 
@@ -79,7 +80,6 @@ function GamePage({ tracks, resetGame }) {
     setShowModal(true);
     setIsGameOver(true);
     endGame();
-
   }
   function closeModal() {
     setShowModal(false);
@@ -87,7 +87,7 @@ function GamePage({ tracks, resetGame }) {
   async function postScore() {
     const db = getFirestore();
     const scoresCollection = collection(db, "LeaderBoard2");
-    await addDoc(scoresCollection, { Name: playerName, score: score });//want to store the score before posting
+    await addDoc(scoresCollection, { Name: playerName, score: score }); //want to store the score before posting
   }
 
   function resetGameState() {
@@ -142,8 +142,26 @@ function GamePage({ tracks, resetGame }) {
           </p>
         </div>
       </div>
-      {isGameOver && <GameOverModal score={score} show={showModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} artist={artist} />}
-      {isGameOver && <WonModal score={score} show={showWonModal} handleClose={closeModal} handleLeaderboard={postScore} handlePlayAgain={playAgain} artist={artist} />}
+      {isGameOver && (
+        <GameOverModal
+          score={score}
+          show={showModal}
+          handleClose={closeModal}
+          handleLeaderboard={postScore}
+          handlePlayAgain={playAgain}
+          artist={artist}
+        />
+      )}
+      {isGameOver && (
+        <WonModal
+          score={score}
+          show={showWonModal}
+          handleClose={closeModal}
+          handleLeaderboard={postScore}
+          handlePlayAgain={playAgain}
+          artist={artist}
+        />
+      )}
     </div>
   );
 }
