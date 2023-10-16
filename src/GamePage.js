@@ -25,27 +25,17 @@ function GamePage({ tracks, resetGame }) {
     const leftTrackPopularity = trackList[trackList.length - 1].popularity;
     const rightTrackPopularity = trackList[trackList.length - 2].popularity;
 
-    if (choice === "higher" && rightTrackPopularity > leftTrackPopularity) {
+    if (choice === "higher" && rightTrackPopularity >= leftTrackPopularity) {
       stateSuccess("right");
     } else if (
       choice === "lower" &&
-      rightTrackPopularity < leftTrackPopularity
+      rightTrackPopularity <= leftTrackPopularity
     ) {
       stateSuccess("right");
     } else {
       stateGameOver();
     }
   }
-
-  /* function compareTracks(index) {
-        const otherIndex = (index === 1) ? 2 : 1;
-        if (trackList[trackList.length - index].popularity >= trackList[trackList.length - otherIndex].popularity) {
-            stateSuccess(index);
-        }
-        else {
-            stateGameOver();
-        }
-    }*/
 
   function updateScore() {
     const newScore = score + 1;
