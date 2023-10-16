@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function WonModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain }) {
+function WonModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain, artist }) {
   const navigate = useNavigate();
   return (
     <div
@@ -34,7 +34,7 @@ function WonModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain
             <button
               type="button"
               className="btn modal-leaderboard"
-              onClick={handleLeaderboard}
+              onClick={() => navigate(`/leader-board/${score}/${artist}`, { state: { fromModal: true } })}
             >
               Submit to Leaderboard
             </button>

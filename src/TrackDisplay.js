@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 function TrackDisplay(props) {
   function handleClick(choice) {
-    props.scoreFunction(props.track.id, choice);
+    props.scoreFunction(choice);
   }
   const imgRef = useRef(null);
   const textRef = useRef(null);
