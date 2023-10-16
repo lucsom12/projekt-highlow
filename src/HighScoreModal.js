@@ -27,17 +27,18 @@ export default function HighscoreForm({ show, score, artist, submitScore }) {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              Submit Your Score: {score} on {artist}
-            </h5>
+            <div className="justify-content-center">
+            <h3 className="modal-title" id="exampleModalLabel">
+              Submit to Leaderboard
+              
+            </h3>
+            <h5 className="strong text-center">Score: <span style={{color:"#00991c"}}>{score}</span> on <span style={{color:"#ff8800"}}>{artist}</span></h5> 
+            </div>
             <button
               type="button"
-              className="close"
-              aria-label="Close"
+              className="btn-close"
               onClick={handleClose}
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+            ></button>
           </div>
           <div className="modal-body">
             <form>
@@ -55,18 +56,11 @@ export default function HighscoreForm({ show, score, artist, submitScore }) {
               </div>
             </form>
           </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleClose}
-            >
-              Close
-            </button>
+          <div className="modal-footer justify-content-center">
             <button
               onClick={handleFormSubmit}
               type="button"
-              className="btn btn-primary"
+              className="btn modal-leaderboard"
             >
               Submit Score
             </button>

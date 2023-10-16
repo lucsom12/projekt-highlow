@@ -39,7 +39,7 @@
 /* landing page styling */
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700,900,400italic,700italic,900italic);
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&family=Mulish:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&family=Mulish:wght@300;400&display=swap");
 
 *,
 :before,
@@ -50,26 +50,26 @@
 body {
   background-color: #3d6645;
   background-image: url("./assets/higherlowerbg3.png");
-  background-size:cover;
+  background-size: cover;
   color: #011a32;
   font: 16px/1.25 "Raleway", sans-serif;
   text-align: center;
   overflow: hidden;
 }
 
-.footer{
+.footer {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
 }
 
-#bgTopRight{
+#bgTopRight {
   position: absolute;
   top: 0;
   right: 30px;
-  height:80%;
-  opacity:0.6;
+  height: 80%;
+  opacity: 0.6;
 }
 
 #higher {
@@ -168,49 +168,43 @@ body {
 
 /* Game page styling */
 
-
-.artisttext{
+.artisttext {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  font-size:3rem;
-  color:rgb(215, 215, 215);
+  font-size: 3rem;
+  color: rgb(215, 215, 215);
 }
 
-.imagetext-1{
+.imagetext-1 {
   position: absolute;
   top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width:90%;
-  color:white;
+  width: 90%;
+  color: white;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2.1rem;
-  text-shadow: 
-        -1px -1px 0 black,
-        -1px 1px 0 black,
-        1px -1px 0 black,
-        1px 1px 0 black;
+  text-shadow: -1px -1px 0 black, -1px 1px 0 black, 1px -1px 0 black,
+    1px 1px 0 black;
 }
 
-.imagetext-2, .imagetext-3{
+.imagetext-2,
+.imagetext-3 {
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width:90%;
-  color:white;
+  width: 90%;
+  color: white;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2.1rem;
-  text-shadow: 
-        -1px -1px 0 black,
-        -1px 1px 0 black,
-        1px -1px 0 black,
-        1px 1px 0 black;
+  text-shadow: -1px -1px 0 black, -1px 1px 0 black, 1px -1px 0 black,
+    1px 1px 0 black;
 }
 
 img {
@@ -240,7 +234,7 @@ img.dimmed {
   opacity: 1;
 }
 
-.imagetext-3{
+.imagetext-3 {
   opacity: 0;
   transition: opacity 1s 200ms;
 }
@@ -249,122 +243,216 @@ img.dimmed {
   opacity: 1;
 }
 
-.higher-button{
+.higher-button {
   position: absolute;
   top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width:35%;
+  width: 35%;
   text-align: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size:1rem;
-  color:white;
-  border-color:white;
+  font-size: 1rem;
+  color: white;
+  border-color: white;
   border-radius: 20px;
 }
-.higher-button:hover{
-  background-color:#00FF2F;
-  color:rgb(0, 0, 0);
+.higher-button:hover {
+  background-color: #00ff2f;
+  color: rgb(0, 0, 0);
 }
-.lower-button{
+.lower-button {
   position: absolute;
   top: 72%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width:35%;
+  width: 35%;
   text-align: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size:1rem;
-  color:white;
-  border-color:white;
+  font-size: 1rem;
+  color: white;
+  border-color: white;
   border-radius: 20px;
 }
 
-.lower-button:hover{
-  background-color:#FF8800;
-  color:rgb(0, 0, 0);
+.lower-button:hover {
+  background-color: #ff8800;
+  color: rgb(0, 0, 0);
 }
 
-.uniup{
-  color:#00FF2F;
+.uniup {
+  color: #00ff2f;
 }
 
 .higher-button:hover .uniup {
   color: white;
 }
 
-.unidown{
-  color:#FF8800;
+.unidown {
+  color: #ff8800;
 }
 
 .lower-button:hover .unidown {
   color: white;
 }
 
-.score{
+.score {
   position: absolute;
   top: 90%;
   left: 4%;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size:1.7rem;
+  font-size: 1.7rem;
 }
 
-.hiscore{
+.hiscore {
   position: absolute;
   top: 90%;
   right: 4%;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size:1.7rem;
+  font-size: 1.7rem;
 }
 
-.custom-modal{
-  background-color:whitesmoke;
-  border-color:#5C00FF;
+.custom-modal {
+  background-color: whitesmoke;
+  border-color: #5c00ff;
   border-width: 5px;
-  box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, .6);
+  box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, 0.6);
 }
- .modal-close{
-  font-family: 'Raleway', sans-serif;
+.modal-close {
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size:1rem;
-  color:black;
-  border-color:#FF8800;
+  font-size: 1rem;
+  color: black;
+  border-color: #ff8800;
   border-radius: 5px;
- }
+}
 
- .modal-close:hover{
-  background-color:#FF8800;
-  color:white;
- }
+.modal-close:hover {
+  background-color: #ff8800;
+  color: white;
+}
 
- .modal-playagain{
-  font-family: 'Raleway', sans-serif;
+.modal-playagain {
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size:1rem;
-  color:black;
-  border-color:#00FF2F;
+  font-size: 1rem;
+  color: black;
+  border-color: #00ff2f;
   border-radius: 5px;
- }
+}
 
- .modal-playagain:hover{
-  background-color:#00FF2F;
-  color:white;
- }
+.modal-playagain:hover {
+  background-color: #00ff2f;
+  color: white;
+}
 
- .modal-leaderboard{
-  font-family: 'Raleway', sans-serif;
+.modal-leaderboard {
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size:1rem;
-  color:black;
-  border-color:#5C00FF;
+  font-size: 1rem;
+  color: black;
+  border-color: #5c00ff;
   border-radius: 5px;
- }
+}
 
- .modal-leaderboard:hover{
-  background-color:#5C00FF;
-  color:white;
- }
+.modal-leaderboard:hover {
+  background-color: #5c00ff;
+  color: white;
+}
+
+/* Navbar styling */
+
+.nav-item-styling {
+  padding-right: 1rem;
+  border-radius: 0px;
+  font-family: "Raleway", sans-serif;
+}
+
+.nav-link-styling {
+  padding-right: 1rem;
+  border: none;
+  border-radius: 0px;
+}
+
+/* leaderboard-styling */
+.leaderboard-container {
+  width: 30%;
+  height: auto;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.leaderboard-container::-webkit-scrollbar{
+  display:none;
+}
+
+
+.leaderboard {
+  background: linear-gradient(to bottom, #3a404d, #181c26);
+}
+
+.leaderboard-header-text{
+  font-family: "Raleway", sans-serif;
+  color: white;
+  font-size: 2.2rem;
+  text-align: center;
+}
+.leaderboard ol {
+  counter-reset: number;
+}
+.leaderboard li {
+  padding: 16px;
+  border-radius:0px;
+  display: flex;
+}
+.leaderboard li mark {
+  flex-grow: 1;
+  color: snow;
+  background-color: transparent;
+}
+.leaderboard li:before {
+  counter-increment: number;
+  content: counter(number) ".";
+  margin-right: 10px;
+}
+.leaderboard li:nth-child(1) {
+  border-radius:10px 10px 0px 0px;
+  background: #00e62a;
+}
+.leaderboard li:nth-child(2) {
+  background: #00991c;
+}
+.leaderboard li:nth-child(3) {
+  background: #008018;
+}
+.leaderboard li:nth-child(4) {
+  background: #006613;
+}
+.leaderboard li:nth-child(5) {
+  background: #004c0e;
+  border-radius:0px 0px 10px 10px;
+}
+
+.leaderboard-body {
+  color: snow;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+  overflow-y: scroll;
+}
+.leaderboard-body::-webkit-scrollbar {
+  width: 30px;
+}
