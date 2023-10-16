@@ -23,9 +23,10 @@ const BubblyButton = () => {
     e.preventDefault();
 
     setIsAnimating(true);
-    timeout(2)
-    //window.location.href = "http://localhost:3000/search"; //todo wrong navigate
-    navigate("/search")
+    timeout(400).then(() => {
+      navigate("/search")
+    });
+    
   };
 
 

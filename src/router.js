@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <ApiHandler />,
       },
       {
-        path: "/home",
+        path: "/",
         element: <LandingPage />
       },
       // {

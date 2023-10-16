@@ -26,7 +26,7 @@ function GameOverModal({ score, show, handleClose, handlePlayAgain, artist }) {
             <button
               type="button"
               className="btn modal-close"
-              onClick={() => navigate("/home")}
+              onClick={() => navigate("/")}
             >
               Home
             </button>

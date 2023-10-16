@@ -85,7 +85,7 @@ function DevNavBar() {
       <li className="nav-item nav-item-styling mx-1s">
         <NavLink
           className="nav-link nav-link-styling"
-          to="/home"
+          to="/"
           style={({ isActive }) =>
             isActive
               ? {

@@ -27,7 +27,7 @@ function WonModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain
             <button
               type="button"
               className="btn modal-close"
-              onClick={()=> navigate("/home")}
+              onClick={()=> navigate("/")}
             >
               Home
             </button>
