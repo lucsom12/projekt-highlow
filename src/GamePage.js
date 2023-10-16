@@ -20,7 +20,7 @@ function GamePage({ tracks, resetGame }) {
     return new Promise((res) => setTimeout(res, delay));
   }
 
-  function evaluateChoice(trackId, choice) {
+  function evaluateChoice(choice) {
     setDisabled(true);
     const leftTrackPopularity = trackList[trackList.length - 1].popularity;
     const rightTrackPopularity = trackList[trackList.length - 2].popularity;
@@ -60,10 +60,10 @@ function GamePage({ tracks, resetGame }) {
     }
   }
 
-  function stateSuccess(loserIndex) {
+  function stateSuccess(winnerIndex) {
     console.log("success");
     updateScore();
-    updateTrackList(2000, loserIndex);
+    updateTrackList(2000, winnerIndex);
   }
 
   function stateGameOver() {
