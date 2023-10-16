@@ -20,32 +20,22 @@ function GamePage({ tracks, resetGame }) {
     return new Promise((res) => setTimeout(res, delay));
   }
 
-  function evaluateChoice(trackId, choice) {
+  function evaluateChoice(choice) {
     setDisabled(true);
     const leftTrackPopularity = trackList[trackList.length - 1].popularity;
     const rightTrackPopularity = trackList[trackList.length - 2].popularity;
 
-    if (choice === "higher" && rightTrackPopularity > leftTrackPopularity) {
+    if (choice === "higher" && rightTrackPopularity >= leftTrackPopularity) {
       stateSuccess("right");
     } else if (
       choice === "lower" &&
-      rightTrackPopularity < leftTrackPopularity
+      rightTrackPopularity <= leftTrackPopularity
     ) {
       stateSuccess("right");
     } else {
       stateGameOver();
     }
   }
-
-  /* function compareTracks(index) {
-        const otherIndex = (index === 1) ? 2 : 1;
-        if (trackList[trackList.length - index].popularity >= trackList[trackList.length - otherIndex].popularity) {
-            stateSuccess(index);
-        }
-        else {
-            stateGameOver();
-        }
-    }*/
 
   function updateScore() {
     const newScore = score + 1;
@@ -70,10 +60,10 @@ function GamePage({ tracks, resetGame }) {
     }
   }
 
-  function stateSuccess(loserIndex) {
+  function stateSuccess(winnerIndex) {
     console.log("success");
     updateScore();
-    updateTrackList(2000, loserIndex);
+    updateTrackList(2000, winnerIndex);
   }
 
   function stateGameOver() {

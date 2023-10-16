@@ -9,6 +9,7 @@ function LeaderBoard() {
     const { score, artist } = useParams();
     const location = useLocation();
     let cameFromModal = location.state && location.state.fromModal;
+
     async function fetchData() {
         const db = getFirestore();
         const scoresCollection = collection(db, "LeaderBoard2");
@@ -30,20 +31,12 @@ function LeaderBoard() {
         }
     }
 
+
     useEffect(() => {
-
-        // let mockPlayers = [
-        //   { name: "adam", score: 200 },
-        //   { name: "leo", score: 100 },
-        //   { name: "luc", score: 300 },
-        //   { name: "joar", score: 33 },
-        // ];
-        // setPlayers(mockPlayers);
-
-
 
         fetchData();
     }, []);
+
     async function submitScore(name, score, artist) {
         console.log("did I come from modal?", { cameFromModal })
         console.log("Player ID", name, score, artist)

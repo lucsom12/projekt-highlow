@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./BubblyButton.scss";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const BubblyButton = () => {
   const [isAnimating, setIsAnimating] = useState(false);

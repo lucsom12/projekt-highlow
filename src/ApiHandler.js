@@ -1,5 +1,3 @@
-import { FormControl } from "react-bootstrap";
-import TrackDisplay from "./TrackDisplay";
 import GamePage from "./GamePage";
 import React, { useEffect, useState, useCallback } from "react";
 import { useOutletContext } from "react-router-dom";
@@ -8,16 +6,18 @@ import SearchBar from "./SearchBar"; // Import the SearchBar component
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
+const maxAlbums = 5;
+const maxTracks = 5;
 
 function ApiHandler() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [tracksFromArtist, setTracksFromArtist] = useState([]);
-  const [trackIndex, setTrackIndex] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
   const [artistDisplay, setArtistDisplay] = useState("");
 
   const { setGameStarted } = useOutletContext();
+
 
   const artistParameters = {
     method: "GET",
@@ -92,7 +92,7 @@ function ApiHandler() {
     var albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
       artistID +
-      "/albums?market=SE&limit=5&offset=0",
+      `/albums?market=SE&limit=${maxAlbums}&offset=0`,
       artistParameters
     )
       .then((response) => response.json())
@@ -102,7 +102,7 @@ function ApiHandler() {
 
     const fetchTrackPromises = albums.map(async (album) => {
       const response = await fetch(
-        "https://api.spotify.com/v1/albums/" + album.id + "/tracks?limit=5",
+        "https://api.spotify.com/v1/albums/" + album.id + `/tracks?limit=${maxTracks}`,
         artistParameters
       );
       const data = await response.json();
