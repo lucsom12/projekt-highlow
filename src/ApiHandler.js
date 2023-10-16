@@ -1,5 +1,3 @@
-import { FormControl } from "react-bootstrap";
-import TrackDisplay from "./TrackDisplay";
 import GamePage from "./GamePage";
 import React, { useEffect, useState, useCallback } from "react";
 import { useOutletContext } from "react-router-dom";
@@ -15,7 +13,6 @@ function ApiHandler() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [tracksFromArtist, setTracksFromArtist] = useState([]);
-  const [trackIndex, setTrackIndex] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
   const [artistDisplay, setArtistDisplay] = useState("");
 

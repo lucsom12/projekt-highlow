@@ -4,19 +4,17 @@ export default function HighscoreForm({ show, score, artist, submitScore }) {
   console.log("Time for form");
   console.log(artist);
 
-  const [name, setName] = useState(''); // State to store the name input
-  const [isVisible, setIsVisible] = useState(show); // Initialize the visibility using the prop
+  const [name, setName] = useState('');
+  const [isVisible, setIsVisible] = useState(show); 
 
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
   const handleFormSubmit = () => {
-    // Call the submitScore function with the name, score, and artist
     submitScore(name, score, artist);
     setIsVisible(false);
   };
   const handleClose = () => {
-    // Call the submitScore function with the name, score, and artist
     setIsVisible(false);
   };
   return (
@@ -61,7 +59,7 @@ export default function HighscoreForm({ show, score, artist, submitScore }) {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={handleClose} // Call handleClose to close the modal
+              onClick={handleClose}
             >
               Close
             </button>

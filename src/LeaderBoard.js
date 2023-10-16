@@ -19,19 +19,9 @@ function LeaderBoard() {
         await addDoc(scoresCollection, { name: name, score: score, artist: artist });//want to store the score before posting
     }
     useEffect(() => {
-
-        // let mockPlayers = [
-        //   { name: "adam", score: 200 },
-        //   { name: "leo", score: 100 },
-        //   { name: "luc", score: 300 },
-        //   { name: "joar", score: 33 },
-        // ];
-        // setPlayers(mockPlayers);
-
         async function fetchData() {
             const db = getFirestore();
             const scoresCollection = collection(db, "LeaderBoard2");
-
 
             console.log("fetching data");
             try {

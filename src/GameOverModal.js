@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function GameOverModal({ score, show, handleClose, handleLeaderboard, handlePlayAgain, artist }) {
+function GameOverModal({ score, show, handleClose, handlePlayAgain, artist }) {
   const navigate = useNavigate();
   return (
     <div

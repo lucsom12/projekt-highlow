@@ -1,17 +1,8 @@
-import logo from "./logo.svg";
 import "./BubblyButton.scss";
 import "./App.css";
 
 import React, { useEffect, useState } from "react";
-import { FormControl } from "react-bootstrap";
-import ApiHandler from "./ApiHandler";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import LandingPage from "./LandingPage";
-import firebaseConfig from "./components/firebase-config";
-import { initializeApp } from "firebase/app";
-
-const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
-const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
 
 export default function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -19,7 +10,7 @@ export default function App() {
 
 
   useEffect(() => {
-    const app = initializeApp(firebaseConfig);
+    // const app = initializeApp(firebaseConfig);
     setGameStarted(false);
   }, [location]);
   return (
@@ -80,11 +71,6 @@ function DevNavBar() {
           game
         </NavLink>
       </li>
-      {/* <li className="nav-item">
-        <NavLink className="nav-link" to="/devF">
-          devFirebase
-        </NavLink>
-      </li> */}
       <li className="nav-item">
         <NavLink className="nav-link" to="/leader-board/:score/:artist">
           LeaderBoard
