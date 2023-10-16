@@ -9,15 +9,27 @@ function LeaderBoard() {
     const { score, artist } = useParams();
     const location = useLocation();
     let cameFromModal = location.state && location.state.fromModal;
-
-    async function submitScore(name, score, artist) {
-        console.log("did I come from modal?", { cameFromModal })
-        console.log("Player ID", name, score, artist)
+    async function fetchData() {
         const db = getFirestore();
         const scoresCollection = collection(db, "LeaderBoard2");
 
-        await addDoc(scoresCollection, { name: name, score: score, artist: artist });//want to store the score before posting
+
+        console.log("fetching data");
+        try {
+            const querySnapshot = await getDocs(scoresCollection);
+            const data = []
+            querySnapshot.forEach((doc) => {
+                const { name, score, artist } = doc.data();
+                data.push({ name, score, artist });
+            });
+            data.sort((a, b) => b.score - a.score);
+            setPlayers(data);
+            console.log(data)
+        } catch (error) {
+            console.error("Error fetching data from Firebase: ", error);
+        }
     }
+
     useEffect(() => {
 
         // let mockPlayers = [
@@ -28,30 +40,19 @@ function LeaderBoard() {
         // ];
         // setPlayers(mockPlayers);
 
-        async function fetchData() {
-            const db = getFirestore();
-            const scoresCollection = collection(db, "LeaderBoard2");
 
-
-            console.log("fetching data");
-            try {
-                const querySnapshot = await getDocs(scoresCollection);
-                const data = []
-                querySnapshot.forEach((doc) => {
-                    const { name, score, artist } = doc.data();
-                    data.push({ name, score, artist });
-                });
-                data.sort((a, b) => b.score - a.score);
-                setPlayers(data);
-                console.log(data)
-            } catch (error) {
-                console.error("Error fetching data from Firebase: ", error);
-            }
-        }
 
         fetchData();
     }, []);
+    async function submitScore(name, score, artist) {
+        console.log("did I come from modal?", { cameFromModal })
+        console.log("Player ID", name, score, artist)
+        const db = getFirestore();
+        const scoresCollection = collection(db, "LeaderBoard2");
 
+        await addDoc(scoresCollection, { name: name, score: score, artist: artist });//want to store the score before posting
+        fetchData();
+    }
     return (
         <div className="container-md">
             <h1>LeaderBoard</h1>
