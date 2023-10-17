@@ -13,11 +13,6 @@ function GameOverModal({ score, show, handleClose, handlePlayAgain, artist }) {
         <div className="modal-content custom-modal">
           <div className="modal-header">
             <h5 className="modal-title h4 strong">Game Over</h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={handleClose}
-            ></button>
           </div>
           <div className="modal-body display-5">
             <p>Score: {score}</p>

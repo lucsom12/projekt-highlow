@@ -122,12 +122,12 @@ function GamePage({ tracks, resetGame }) {
       </div>
       <div className="row">
         <div className="col">
-          <p display-2 className="score">
+          <p display-2="true" className="score">
             Score: {score}
           </p>
         </div>
         <div className="col">
-          <p display-2 className="hiscore">
+          <p display-2="true" className="hiscore">
             High Score: {hiScore}
           </p>
         </div>
