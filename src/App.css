@@ -1,5 +1,3 @@
-
-
 /* landing page styling */
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700,900,400italic,700italic,900italic);
@@ -44,6 +42,7 @@ body {
   font-weight: 900;
   line-height: 1;
 }
+
 #lower {
   animation: text-shadow-down 2s ease-in-out;
   animation-delay: 1.2s;
@@ -221,13 +220,15 @@ img.dimmed {
   border-color: white;
   border-radius: 20px;
 }
+
 .higher-button:hover {
   background-color: #00ff2f;
   color: rgb(0, 0, 0);
 }
+
 .lower-button {
   position: absolute;
-  top: 72%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 35%;
@@ -285,6 +286,7 @@ img.dimmed {
   border-width: 5px;
   box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, 0.6);
 }
+
 .modal-close {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
@@ -357,8 +359,8 @@ img.dimmed {
   overflow-y: auto;
 }
 
-.leaderboard-container::-webkit-scrollbar{
-  display:none;
+.leaderboard-container::-webkit-scrollbar {
+  display: none;
 }
 
 
@@ -366,46 +368,55 @@ img.dimmed {
   background: linear-gradient(to bottom, #3a404d, #181c26);
 }
 
-.leaderboard-header-text{
+.leaderboard-header-text {
   font-family: "Raleway", sans-serif;
   color: white;
   font-size: 2.2rem;
   text-align: center;
 }
+
 .leaderboard ol {
   counter-reset: number;
 }
+
 .leaderboard li {
   padding: 16px;
-  border-radius:0px;
+  border-radius: 0px;
   display: flex;
 }
+
 .leaderboard li mark {
   flex-grow: 1;
   color: snow;
   background-color: transparent;
 }
+
 .leaderboard li:before {
   counter-increment: number;
   content: counter(number) ".";
   margin-right: 10px;
 }
+
 .leaderboard li:nth-child(1) {
-  border-radius:10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
   background: #00e62a;
 }
+
 .leaderboard li:nth-child(2) {
   background: #00991c;
 }
+
 .leaderboard li:nth-child(3) {
   background: #008018;
 }
+
 .leaderboard li:nth-child(4) {
   background: #006613;
 }
+
 .leaderboard li:nth-child(5) {
   background: #004c0e;
-  border-radius:0px 0px 10px 10px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .leaderboard-body {
@@ -417,6 +428,7 @@ img.dimmed {
   width: 100%;
   overflow-y: scroll;
 }
+
 .leaderboard-body::-webkit-scrollbar {
   width: 30px;
 }
