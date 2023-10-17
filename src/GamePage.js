@@ -21,6 +21,7 @@ function GamePage({ tracks, resetGame }) {
   }
 
   function evaluateChoice(choice) {
+    setDisabled(true);
     const leftTrackPopularity = trackList[trackList.length - 1].popularity;
     const rightTrackPopularity = trackList[trackList.length - 2].popularity;
 
@@ -46,6 +47,7 @@ function GamePage({ tracks, resetGame }) {
     console.log("Winner Side:", winnerSide);
     setShowTrackPopularity(true);
     await timeout(popularityDelay);
+    setDisabled(false);
     setShowTrackPopularity(false);
 
     if (trackList.length <= 2) {
