@@ -6,8 +6,8 @@ import SearchBar from "./SearchBar"; // Import the SearchBar component
 
 const CLIENT_ID = "41a89822d42c452fb778e429576a972b";
 const CLIENT_SECRET = "40a6ddb0f73d480094f24bd837e3dfba";
-const maxAlbums = 20;
-const maxTracks = 20;
+const maxAlbums = 5;
+const maxTracks = 5;
 
 function ApiHandler() {
   const [searchInput, setSearchInput] = useState("");
